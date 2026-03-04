@@ -1,0 +1,266 @@
+/* =========================================
+   Origami Concept Style
+   Theme: Origami, Washi, Geometry, Delicate
+========================================= */
+
+:root {
+    --ori-bg: #f9f6f0;
+    /* 胡粉色（白） */
+    --ori-sakura: #fedfe1;
+    /* 桜（かすれたピンク） */
+    --ori-matcha: #a8a878;
+    /* 鶯色（落ち着いた緑） */
+    --ori-text: #4a4a4a;
+    /* 墨色より少し明るいグレー */
+    --font-heading: 'Sawarabi Mincho', serif;
+    --font-text: 'Sawarabi Gothic', 'Noto Sans JP', sans-serif;
+}
+
+body {
+    background-color: var(--ori-bg);
+    /* 繊維感のある和紙テクスチャをCSSで表現 */
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
+    color: var(--ori-text);
+    font-family: var(--font-text);
+}
+
+
+
+.back-btn {
+    font-family: var(--font-text);
+    color: var(--ori-text);
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    padding-left: 25px;
+    position: relative;
+    transition: all 0.3s;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* 戻るボタンの左に折り紙風の三角形 */
+.back-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 10.4px 6px 0;
+    border-color: transparent var(--ori-matcha) transparent transparent;
+    transition: transform 0.3s;
+}
+
+.back-btn:hover {
+    color: var(--ori-matcha);
+}
+
+.back-btn:hover::before {
+    transform: translateY(-50%) translateX(-5px);
+}
+
+/* 背景に舞う折り紙の破片（幾何学ポリゴン） */
+.ori-polygon {
+    position: fixed;
+    z-index: 0;
+    opacity: 0.4;
+    animation: floatOri 20s infinite ease-in-out alternate;
+}
+
+.poly-1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, var(--ori-sakura), transparent);
+    top: -100px;
+    right: -100px;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(15deg);
+}
+
+.poly-2 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(-45deg, var(--ori-matcha), transparent);
+    bottom: 5%;
+    left: -50px;
+    clip-path: polygon(0% 20%, 60% 0%, 100% 80%, 20% 100%);
+    animation-delay: -7s;
+}
+
+.poly-3 {
+    width: 150px;
+    height: 150px;
+    background: var(--ori-bg);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    /* 和紙の重なり */
+    top: 30%;
+    right: 15%;
+    clip-path: polygon(20% 0%, 100% 20%, 80% 100%, 0% 80%);
+    animation-delay: -12s;
+}
+
+@keyframes floatOri {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(50px) rotate(15deg);
+    }
+}
+
+.ori-container {
+    position: relative;
+    z-index: 10;
+}
+
+/* コンテンツ枠：緻密に折られた紙のデザイン */
+.ori-paper {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0;
+    box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+/* 右上の折り返し（ドッグエアー/折り紙表現） */
+.ori-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-width: 0 60px 60px 0;
+    border-style: solid;
+    border-color: var(--ori-bg) var(--ori-bg) #e0e0e0 #e0e0e0;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.08);
+    /* 折れた影 */
+    z-index: 20;
+}
+
+/* 中央の折り目ライン */
+.ori-paper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.05), transparent);
+    z-index: 1;
+}
+
+.paper-inner {
+    padding: 30px 40px;
+    position: relative;
+    z-index: 5;
+}
+
+.ori-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--ori-text);
+    margin: 0;
+    letter-spacing: 0.15em;
+    font-weight: normal;
+}
+
+.ori-subtitle {
+    color: var(--ori-matcha);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    letter-spacing: 0.3em;
+    margin-top: 5px;
+}
+
+/* 本文を2カラムに分けて折り紙の面を表現 */
+.ori-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.lyric-col {
+    display: flex;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    line-height: 1.8;
+    color: var(--ori-text);
+    border-right: 1px dashed rgba(0, 0, 0, 0.1);
+    padding-right: 30px;
+}
+
+.desc-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.desc-col h2 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--ori-text);
+    margin-top: 0;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.desc-col h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background: var(--ori-sakura);
+}
+
+.desc-col p {
+    line-height: 1.6;
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    margin: 0;
+}
+
+/* 開くアニメーション */
+.fold-open {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-10deg);
+    transform-origin: top center;
+    transition: all 1s ease-out;
+}
+
+.fold-open.visible {
+    opacity: 1;
+    transform: perspective(1000px) rotateX(0deg);
+}
+
+@media (max-width: 768px) {
+    .ori-content-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .lyric-col {
+        border-right: none;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        padding-right: 0;
+        padding-bottom: 15px;
+    }
+
+    .ori-title {
+        font-size: 2.5rem;
+    }
+
+    .ori-paper::before {
+        border-width: 0 30px 30px 0;
+    }
+
+    .paper-inner {
+        padding: 20px;
+    }
+}

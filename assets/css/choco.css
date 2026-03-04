@@ -1,0 +1,305 @@
+/* =========================================
+   Chocolate Concept Style
+   Theme: Chocolate, Sweet, Patisserie, Ribbon
+========================================= */
+
+:root {
+    --choco-dark: #3e2723;
+    /* ビターチョコ */
+    --choco-milk: #5d4037;
+    /* ミルクチョコ */
+    --choco-cream: #fff8e1;
+    /* バニラクリーム */
+    --choco-pink: #f48fb1;
+    /* ストロベリーチョコ/リボン */
+    --choco-accent: #d7ccc8;
+    /* デコレーション */
+    --font-heading: 'Zen Maru Gothic', sans-serif;
+    --font-text: 'Quicksand', 'Zen Maru Gothic', sans-serif;
+}
+
+body {
+    background-color: var(--choco-cream);
+    /* ストライプパターン（パティスリーのオーニング風） */
+    background-image: repeating-linear-gradient(-45deg,
+            rgba(244, 143, 177, 0.1),
+            rgba(244, 143, 177, 0.1) 20px,
+            transparent 20px,
+            transparent 40px);
+    color: var(--choco-dark);
+    font-family: var(--font-text);
+}
+
+
+
+.back-btn {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--choco-cream);
+    background: var(--choco-dark);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(62, 39, 35, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 3px solid var(--choco-pink);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.back-btn:hover {
+    background: var(--choco-pink);
+    border-color: var(--choco-dark);
+    transform: scale(1.05) rotate(-2deg);
+}
+
+/* 上部から垂れてくる溶けたチョコのアニメーション付き表現 */
+.melt-header {
+    position: relative;
+    width: 100%;
+    height: 15px;
+    background: var(--choco-dark);
+    z-index: 100;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.melt-drips {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    display: flex;
+}
+
+.drip {
+    flex: 1;
+    background: var(--choco-dark);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+/* ランダムな長さを表現するためのカスタムスタイルはHTMLのインラインで調整するか固定パターン化する */
+.drip:nth-child(even) {
+    height: 10px;
+}
+
+.drip:nth-child(3n) {
+    height: 15px;
+}
+
+.drip:nth-child(5n) {
+    height: 8px;
+}
+
+.choco-container {
+    position: relative;
+    z-index: 10;
+}
+
+.choco-box {
+    background: var(--choco-milk);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 15px 15px 0 var(--choco-pink), 0 20px 40px rgba(0, 0, 0, 0.15);
+    position: relative;
+    border: 4px solid var(--choco-dark);
+    max-height: none !important;
+    /* ベースの45vhを解除し全内容を表示 */
+    overflow: visible !important;
+    /* ボックス内スクロール要素を無効化 */
+    margin-top: 40px;
+    /* リボンが上のテキストに被らないように余白を追加 */
+    margin-bottom: 60px;
+    /* 画面下部までスクロールした際の余白を追加 */
+}
+
+/* リボン装飾 */
+.ribbon {
+    position: absolute;
+    top: 15px;
+    right: -25px;
+    background: var(--choco-pink);
+    color: #fff;
+    padding: 15px 40px;
+    font-weight: bold;
+    transform: rotate(10deg);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+    font-size: 1.4rem;
+    border: 3px dashed var(--choco-cream);
+    font-family: var(--font-heading);
+}
+
+.choco-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--choco-cream);
+    text-align: center;
+    margin: 0;
+    text-shadow: 3px 3px 0 var(--choco-dark);
+}
+
+.choco-subtitle {
+    text-align: center;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    color: var(--choco-pink);
+    margin-bottom: 20px;
+    margin-top: 5px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+/* 本文エリア：ビスケット/クッキー風 */
+.content-board {
+    background: var(--choco-cream);
+    color: var(--choco-dark);
+    border-radius: 15px;
+    padding: 20px 30px;
+    border: 4px dashed var(--choco-milk);
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(93, 64, 55, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+/* クッキーの穴ポコ表現 */
+.content-board::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    border: 1px dotted rgba(93, 64, 55, 0.2);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.content-grid {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.choco-image-wrap {
+    flex: 1;
+    text-align: center;
+    background: var(--choco-pink);
+    padding: 20px;
+    border-radius: 50%;
+    border: 5px solid var(--choco-cream);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.choco-image-wrap i {
+    font-size: clamp(3rem, 6vw, 6rem);
+    color: var(--choco-cream);
+}
+
+.choco-text-wrap {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-board h2 {
+    font-family: var(--font-heading);
+    color: var(--choco-pink);
+    margin-top: 0;
+    font-size: 1.5rem;
+    border-bottom: 4px double var(--choco-milk);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.content-board p {
+    line-height: 1.6;
+    font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+    font-weight: 500;
+    margin: 0;
+}
+
+.choco-btn-wrap {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.choco-btn {
+    background: var(--choco-pink);
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 50px;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 3px solid var(--choco-cream);
+    box-shadow: 0 6px 0 #c2185b, 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.1s;
+}
+
+.choco-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 0px 0 #c2185b, 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 登場アニメーション */
+.pop-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pop-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (max-aspect-ratio: 1/1),
+(max-width: 1024px) {
+    .content-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .choco-image-wrap {
+        padding: 15px;
+    }
+
+    .choco-image-wrap i {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .choco-container {
+        padding: 0 15px 15px 15px;
+    }
+
+    .choco-title {
+        font-size: 2.5rem;
+    }
+
+    .choco-box {
+        padding: 20px;
+    }
+
+    .content-board {
+        padding: 20px 15px;
+    }
+
+    .ribbon {
+        font-size: 1rem;
+        padding: 10px 20px;
+        top: -15px;
+        right: -15px;
+    }
+}

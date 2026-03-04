@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>愛ゆえに | OFFICIAL PORTAL</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* 追加のアニメーションや特殊な装飾 */
+        .now-loading-container {
+            width: 100%;
+            margin: 20px 0 25px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 15px;
+            background: rgba(11, 29, 58, 0.05);
+            border-radius: 10px;
+            box-shadow: inset 2px 2px 5px rgba(11, 29, 58, 0.1), inset -2px -2px 5px rgba(255, 255, 255, 1);
+            position: relative;
+            overflow: visible;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 75%;
+            background: var(--aiyueni-accent);
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(11, 29, 58, 0.2);
+            border: 3px solid var(--aiyueni-accent);
+            cursor: pointer;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--aiyueni-accent-light);
+            font-weight: 900;
+            margin-top: 10px;
+            letter-spacing: 0.1em;
+        }
+
+        .now-loading-title {
+            font-family: var(--font-base);
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--aiyueni-accent);
+            text-align: center;
+            letter-spacing: 0.2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(11, 29, 58, 0.1), -1px -1px 2px rgba(255, 255, 255, 1);
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .back-btn {
+            pointer-events: auto;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            color: var(--aiyueni-accent);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            box-shadow: 3px 3px 8px rgba(11, 29, 58, 0.1), -3px -3px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .back-btn:hover {
+            transform: translateY(2px);
+            box-shadow: inset 2px 2px 5px rgba(11, 29, 58, 0.1), inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--aiyueni-bg-deep);
+            color: var(--aiyueni-text);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid var(--aiyueni-glass-border);
+            box-shadow: inset 2px 2px 5px rgba(11, 29, 58, 0.05), inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Deep Sea Background + Layers -->
+    <div class="underwater-bg"></div>
+    <div class="bubbles-container" id="bubbles"></div>
+
+    <!-- Depth CSS Animation Layers -->
+    <div class="depth-layers-container">
+        <!-- 1. 海面エリア (Surface) -->
+        <div class="depth-layer surface-layer">
+            <div class="wave"></div>
+            <div class="wave wave2"></div>
+            <!-- 海面を進む小船 -->
+            <div class="moving-entity boat"><i class="ph-fill ph-boat"></i></div>
+            <div class="moving-entity moon"><i class="ph-fill ph-moon"></i></div>
+        </div>
+
+        <!-- 2. 中層エリア (Midwater) -->
+        <div class="depth-layer mid-layer">
+            <!-- 泳ぐ魚のアイコン群 -->
+            <div class="moving-entity fish fish1"><i class="ph-fill ph-fish"></i></div>
+            <div class="moving-entity fish fish2"
+                style="animation-duration: 25s; animation-delay: 5s; font-size: 1.5rem; top: 40%;"><i
+                    class="ph-fill ph-fish-simple"></i></div>
+            <div class="moving-entity fish fish3"
+                style="animation-duration: 35s; animation-delay: 15s; font-size: 3rem; top: 70%; opacity: 0.1;"><i
+                    class="ph-fill ph-shark"></i></div>
+        </div>
+
+        <!-- 3. 深海エリア (Deep Sea) -->
+        <div class="depth-layer deep-layer">
+            <!-- 潜水艦と謎の光 -->
+            <div class="moving-entity submarine"><i class="ph-fill ph-submarine"></i></div>
+            <div class="moving-entity anglerfish"><i class="ph-fill ph-drop"
+                    style="color:var(--aiyueni-accent-light); filter:drop-shadow(0 0 10px #48cae4);"></i> <i
+                    class="ph-fill ph-fish" style="opacity: 0.3;"></i></div>
+        </div>
+    </div>
+
+    <nav class="top-nav">
+        <a href="../../index.html" class="back-btn"><i class="ph-bold ph-arrow-left"></i> RETURN TO HUB</a>
+    </nav>
+
+    <main class="glass-dashboard">
+
+        <!-- Profile Column (Span 5) -->
+        <article class="profile-col fade-up">
+            <div class="glass-panel main-glass-card">
+                <div class="avatar-container">
+                    <img src="./img/aiyueni_stand1.png" alt="愛ゆえに" class="avatar-img"
+                        style="top: 0; width: 100%; height: auto; object-fit: cover;">
+                </div>
+
+                <h1 class="profile-name" style="margin-bottom:0;">愛ゆえに</h1>
+                <div class="profile-title"><i class="ph-bold ph-drop"></i> DEEP SEA CREATOR</div>
+
+                <!-- DEPTH GAUGE (Interactive) -->
+                <div class="now-loading-container" id="depth-container">
+                    <div class="now-loading-title" id="depth-title">CURRENT DEPTH: 200m</div>
+                    <div class="progress-bar" id="depth-bar">
+                        <div class="progress-fill" id="depth-fill" style="width: 20%;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>SURFACE</span>
+                        <span>DEEP SEA</span>
+                    </div>
+                </div>
+
+                <p class="profile-desc">
+                    深夜に降臨する、深海のお姉さん。<br>完全セルフ受肉・特大むちむち実写配信。<br>活動時間は主に 0:00 〜 2:30頃。<br>静かな夜に、こっそり会いに来ませんか？
+                </p>
+
+                <div style="margin-top: 20px;">
+                    <span id="aiyueniLiveStatus" class="status-badge"><i class="ph-bold ph-spinner ph-spin"></i> STATUS:
+                        CHECKING...</span>
+                </div>
+
+                <div class="social-glass">
+                    <a href="https://twitch.tv/0u0_2u" target="_blank" class="social-btn"><i
+                            class="ph-fill ph-twitch-logo"></i></a>
+                    <a href="https://youtube.com/@aiyueni_vtuber" target="_blank" class="social-btn"><i
+                            class="ph-fill ph-youtube-logo"></i></a>
+                    <a href="https://twitter.com/aiyueni_Vtuber" target="_blank" class="social-btn"><i
+                            class="ph-fill ph-x-logo"></i></a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Content Column (Span 7) -->
+        <article class="content-col fade-up delay-1">
+
+            <!-- Schedule Card -->
+            <div class="glass-panel schedule-card">
+                <h2 class="glass-title"><i class="ph-bold ph-calendar-blank"></i> MIDNIGHT SCHEDULE</h2>
+                <div class="schedule-list" id="schedule-list">
+                    <!-- JS Insert -->
+                </div>
+            </div>
+
+            <!-- Portal Network (Link Card) -->
+            <div class="glass-panel" style="padding: 25px;">
+                <h2 class="glass-title"><i class="ph-bold ph-link"></i> PORTAL NETWORK</h2>
+                <div class="glass-grid" style="grid-template-columns: 1fr;">
+                    <a href="https://lit.link/aiyueniVtuber" target="_blank" class="media-card"
+                        style="border-radius:20px; border:1px solid var(--aiyueni-glass-border); box-shadow:5px 5px 15px rgba(11,29,58,0.05); min-height: auto; overflow: hidden; background: var(--aiyueni-bg-deep);">
+                        <div class="card-content" style="width: 100%; text-align:center;">
+                            <h3 style="display:flex; align-items:center; justify-content:center; gap:10px;"><i
+                                    class="ph-bold ph-link"></i> lit.link</h3>
+                            <span>その他リンクまとめ・グッズ販売</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <footer
+        style="text-align: center; color: var(--aiyueni-text-muted); font-size: 0.85rem; padding: 20px 0; letter-spacing: 0.1em; font-weight: 700;">
+        &copy; 2026 AI YUENI OFFICIAL. LOST IN THE DEEP SEA.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Fetch Twitch Live Status
+            async function checkTwitchLive(channelName) {
+                try {
+                    const response = await fetch(`https://decapi.me/twitch/uptime/${channelName}`);
+                    const text = await response.text();
+                    const textLower = text.toLowerCase();
+                    const statusSpan = document.getElementById('aiyueniLiveStatus');
+
+                    if (textLower.includes('offline') || textLower.includes('not live') || textLower.includes('error')) {
+                        statusSpan.innerHTML = '<i class="ph-fill ph-moon"></i> SLEEPING IN THE DEEP...';
+                    } else {
+                        statusSpan.innerHTML = '<i class="ph-fill ph-broadcast" style="color:#ff69b4;"></i> <span style="color:#ff69b4; text-shadow:0 0 5px rgba(255,105,180,0.5);">BROADCASTING NOW</span>';
+                        statusSpan.style.borderColor = "rgba(255, 105, 180, 0.5)";
+                    }
+                } catch (e) {
+                    console.error('Twitch情報の取得に失敗', e);
+                    document.getElementById('aiyueniLiveStatus').innerHTML = '<i class="ph-fill ph-moon"></i> SLEEPING IN THE DEEP...';
+                }
+            }
+            checkTwitchLive('0u0_2u');
+
+            // Generate Grid Schedule Data
+            const todayIndex = new Date().getDay();
+            const mapDayToIndex = { 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 0: 6 };
+            const adjustedTodayIndex = mapDayToIndex[todayIndex];
+
+            const scheduleData = [
+                { day: "MON", ja: "月", time: "0:00 - 2:30", title: "夜ふかし雑談", s: "ttv" },
+                { day: "TUE", ja: "火", time: "0:00 - 2:30", title: "深夜の実写配信♡", s: "ttv" },
+                { day: "WED", ja: "水", time: "0:00 - 2:30", title: "深夜ゲーム部", s: "ttv" },
+                { day: "THU", ja: "木", time: "OFF", title: "海の底でお休み", s: "off" },
+                { day: "FRI", ja: "金", time: "0:00 - 2:30", title: "華金・実写配信♡", s: "ttv" },
+                { day: "SAT", ja: "土", time: "23:00 - 2:30", title: "週末の特別枠", s: "ttv" },
+                { day: "SUN", ja: "日", time: "0:00 - 2:30", title: "まったりお話し", s: "ttv" }
+            ];
+
+            const container = document.getElementById('schedule-list');
+            container.innerHTML = '';
+
+            scheduleData.forEach((item, index) => {
+                const isToday = index === adjustedTodayIndex;
+                const div = document.createElement('div');
+                div.className = 'schedule-item';
+                // Note: The previous design had an active state class. Here we use inline styles to visually distinguish today's schedule if needed.
+                if (isToday) {
+                    div.style.background = 'rgba(255, 255, 255, 0.8)'; /* 透明から白背景へ（反転） */
+                    div.style.color = 'var(--aiyueni-accent)'; /* 文字を濃い色にして視認性確保 */
+                    div.style.borderColor = 'var(--aiyueni-accent-light)';
+                    div.style.opacity = '1';
+                } else {
+                    div.style.opacity = '0.5'; /* 当日以外を薄くして、より差をつける */
+                }
+
+                let icon = '';
+                if (item.s === 'ttv') icon = '<i class="ph-fill ph-twitch-logo" style="color:#9146ff; margin-right:5px; font-size:1.2rem;"></i>';
+                else if (item.s === 'yt') icon = '<i class="ph-fill ph-youtube-logo" style="color:#ff0000; margin-right:5px; font-size:1.2rem;"></i>';
+                else icon = '<i class="ph-fill ph-moon" style="color:var(--aiyueni-text-muted); margin-right:5px; font-size:1.2rem;"></i>';
+
+                div.innerHTML = `
+                    <div class="schedule-day" style="${isToday ? 'color: var(--aiyueni-accent);' : ''}">${item.day}</div>
+                    <div class="schedule-info">
+                        <div class="schedule-time" style="${isToday ? 'color: var(--aiyueni-accent); font-weight: 700;' : ''}">${item.time} (${item.ja})</div>
+                        <div class="schedule-title" style="display:flex; align-items:center;">${icon}${item.title}</div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            // CSS Bubble Generator Background (数を減らし、速度を遅く)
+            const bubblesContainer = document.getElementById('bubbles');
+            for (let i = 0; i < 10; i++) { // 25 -> 10へ削減
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.random() * 30 + 10; // 若干小さめ
+                const left = Math.random() * 100;
+                const duration = Math.random() * 10 + 15; // 速度をかなり遅く(15〜25秒)
+                const delay = Math.random() * 10;
+
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}%`;
+                bubble.style.animationDuration = `${duration}s`;
+                bubble.style.animationDelay = `${delay}s`;
+                // 主張を抑えるために透明度をさらに下げる
+                bubble.style.opacity = '0.3';
+
+                bubblesContainer.appendChild(bubble);
+            }
+
+            // Mouse Glow Tracker for Glass Panels
+            document.querySelectorAll('.glass-panel').forEach(panel => {
+                panel.addEventListener('mousemove', e => {
+                    const rect = panel.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    panel.style.setProperty('--mouse-x', `${x}px`);
+                    panel.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+
+            // ==========================================
+            // Interactive Depth Gauge (遊び機能)
+            // ==========================================
+            const depthContainer = document.getElementById('depth-container');
+            const depthBar = document.getElementById('depth-bar');
+            const depthFill = document.getElementById('depth-fill');
+            const depthTitle = document.getElementById('depth-title');
+            const underwaterBg = document.querySelector('.underwater-bg');
+            const allBubbles = document.querySelectorAll('.bubble');
+
+            let isDragging = false;
+
+            // 深度計算とUI反映関数
+            function updateDepth(clientX) {
+                const rect = depthBar.getBoundingClientRect();
+                let x = clientX - rect.left;
+                if (x < 0) x = 0;
+                if (x > rect.width) x = rect.width;
+
+                const ratio = x / rect.width;
+                depthFill.style.width = `${ratio * 100}%`;
+
+                const currentDepth = Math.floor(ratio * 1000);
+                if (currentDepth < 100) {
+                    depthTitle.textContent = `SURFACE: ${currentDepth}m`;
+                    depthTitle.style.color = 'var(--aiyueni-accent-light)';
+                    depthTitle.style.textShadow = 'none';
+                } else if (currentDepth < 700) {
+                    depthTitle.textContent = `MIDWATER: ${currentDepth}m`;
+                    depthTitle.style.color = '#fff';
+                    depthTitle.style.textShadow = '0 0 5px rgba(255,255,255,0.5)';
+                } else {
+                    depthTitle.textContent = `DEEP SEA: ${currentDepth}m`;
+                    depthTitle.style.color = 'var(--aiyueni-text)';
+                    depthTitle.style.textShadow = '0 0 10px rgba(255,255,255,1)';
+                }
+
+                // --- 遊び機能コア ---
+                // 1. 背景の明るさ (1.5 〜 0.2)
+                const brightness = 1.5 - (ratio * 1.3);
+                underwaterBg.style.setProperty('--bg-brightness', brightness);
+
+                // 2. 泡の透明度 (深くなる=ratioが1に近づくほど泡を見えなくする。最大0.3)
+                const bubbleOpacity = 0.3 * (1 - ratio);
+                allBubbles.forEach(b => {
+                    b.style.opacity = bubbleOpacity.toString();
+                });
+            }
+
+            // マウスイベント
+            depthBar.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateDepth(e.clientX);
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) updateDepth(e.clientX);
+            });
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // タッチイベント(スマホ対応)
+            depthBar.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                updateDepth(e.touches[0].clientX);
+            });
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging) updateDepth(e.touches[0].clientX);
+            });
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        });
+    </script>
+</body>
+
+</html>

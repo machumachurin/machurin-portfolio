@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URAMESHI | CYBER JIANGSHI PORTAL</title>
+    <!-- Phospor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Background Effects -->
+    <div class="noise-overlay"></div>
+    <div class="spider-web-bg"></div>
+    <div class="scanlines"></div>
+
+    <!-- HUB Navigation -->
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn">
+            <i class="ph-bold ph-arrow-left"></i> ESCAPE_TO_HUB
+        </a>
+    </nav>
+
+    <!-- Main Container (12-column grid) -->
+    <main class="urameshi-grid">
+
+        <!-- Left: Profile & Concept -->
+        <div class="profile-column fade-up">
+
+            <div class="ofuda-tag" id="ofudaSeal" onclick="breakSeal()" style="cursor: pointer;">
+                <span class="ofuda-text">封印解除</span>
+            </div>
+
+            <div class="avatar-container">
+                <div class="glitch-avatar" id="urameshiAvatar" data-text="URAMESHI">
+                    <img src="./img/urameshi_icon.jpg" alt="うらめし" class="avatar-img">
+                </div>
+            </div>
+
+            <h1 class="urameshi-name glow-text">URAMESHI <span>ITIKO</span></h1>
+
+            <div class="status-box">
+                <div class="status-header">
+                    <span>> SYSTEM_STATUS:</span>
+                    <span class="status-live blink-text">ONLINE</span>
+                </div>
+                <div class="hp-bar-container">
+                    <div class="hp-bar-fill"></div>
+                </div>
+                <div class="status-details">
+                    <span>CLASS: CYBER_JIANGSHI</span>
+                    <span id="system-level">LV: 0</span>
+                </div>
+            </div>
+
+            <div class="about-text-box">
+                <p>「アンタら、今日も見に来たわけ？ 物好きだねぇ。」</p>
+                <p>現代に蘇ったサイバーキョンシー。<br>普段はダルそうにしているが、ゲームになると口が悪くなる蜘蛛の化身でもある。<br>
+                    <span>#キョンシー</span> <span>#INFJ</span> <span>#ゲーム好き</span>
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Right: PORTAL & Gimmicks -->
+        <div class="portal-column fade-up delay-1">
+
+            <h2 class="section-title"><i class="ph-fill ph-spider"></i> ACCESS_PORTAL</h2>
+
+            <!-- Link Module -->
+            <div class="link-grid">
+                <a href="https://x.com/urameshiitiko" target="_blank" class="cyber-btn x-btn">
+                    <i class="ph-fill ph-x-logo"></i> <span>CONNECTION_X</span>
+                </a>
+                <a href="https://www.twitch.tv/uramesi3" target="_blank" class="cyber-btn twitch-btn">
+                    <i class="ph-fill ph-twitch-logo"></i> <span>TTV_LIVE</span>
+                </a>
+            </div>
+
+            <!-- Temporary Widget (Will be expanded later) -->
+            <div class="gimmick-box mt-30">
+                <h3 class="box-title">LATEST_LOG // <span style="color:var(--accent-lime);"
+                        id="terminal-status">DECRYPTING...</span></h3>
+                <div class="terminal-view" id="hacker-terminal">
+                    <p class="sys-out">> Loading user preferences...</p>
+                    <p class="sys-out">> [FAVORITE]: APEX, VALORANT, HORROR_GAME</p>
+                    <p class="sys-warn">> Warning: Spider threads detected in sector 4.</p>
+                </div>
+                <button class="hack-btn" onclick="startHackProtocol()">
+                    <i class="ph-bold ph-terminal-window"></i> RUN_OVERRIDE_PROTOCOL
+                </button>
+            </div>
+        </div>
+
+        <!-- Schedule Widget -->
+        <div class="schedule-column fade-up delay-2">
+            <div class="gimmick-box mt-30">
+                <h3 class="box-title">BROADCAST_SCHEDULE // <span style="color:var(--accent-purple);">LOG_ARCHIVE</span>
+                </h3>
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <span class="day-tag">MON</span>
+                        <span class="time">21:00</span>
+                        <span class="title">VALORANT Ranked</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="day-tag">TUE</span>
+                        <span class="time">22:00</span>
+                        <span class="title">Chatting & Games</span>
+                    </div>
+                    <div class="schedule-item active-day">
+                        <span class="day-tag" style="background:var(--accent-lime); color:#000;">WED</span>
+                        <span class="time" style="color:var(--accent-lime);">20:00</span>
+                        <span class="title" style="color:#fff; text-shadow:0 0 5px var(--accent-lime);">Horror
+                            Game</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="day-tag">THU</span>
+                        <span class="time">OFF</span>
+                        <span class="title" style="color:var(--text-muted);">MAINTENANCE</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="day-tag">FRI</span>
+                        <span class="time">22:00</span>
+                        <span class="title">Collab Stream</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="day-tag">SAT</span>
+                        <span class="time">20:00</span>
+                        <span class="title">APEX Legends</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="day-tag">SUN</span>
+                        <span class="time">OFF</span>
+                        <span class="title" style="color:var(--text-muted);">MAINTENANCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        // Animations initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in, .fade-up').forEach(el => el.classList.add('visible'));
+            }, 100);
+        });
+
+        // --- Gimmick 1: Ofuda Seal Break ---
+        let sealBroken = false;
+        let sealPower = 0; // ゲージのパーセンテージ
+
+        function breakSeal() {
+            if (sealBroken) return;
+
+            // 1回のクリックで20%上昇 (5回で満タン)
+            sealPower += 20;
+            const hpBar = document.querySelector('.hp-bar-fill');
+            const levelText = document.getElementById('system-level');
+            const ofuda = document.getElementById('ofudaSeal');
+
+            // ゲージとレベルの更新 (満タン時はLV: 999の暴走状態に)
+            hpBar.style.width = sealPower + '%';
+            levelText.innerText = 'LV: ' + (sealPower >= 100 ? '999' : sealPower);
+
+            // クリックのたびにお札が少し揺れるアニメーション
+            ofuda.style.transform = `rotate(${Math.random() * 20 - 10}deg) scale(1.1)`;
+            setTimeout(() => { if (!sealBroken) ofuda.style.transform = ''; }, 100);
+
+            // 100%到達で封印解除発動
+            if (sealPower >= 100) {
+                sealBroken = true;
+                const avatar = document.getElementById('urameshiAvatar');
+
+                // Play break animation on Ofuda
+                ofuda.classList.add('broken-seal');
+                ofuda.innerHTML = '<span class="ofuda-text" style="color:#FF0000;">暴走開始</span>';
+
+                // Trigger global glitch
+                document.body.classList.add('global-glitch');
+                avatar.classList.add('avatar-berserk');
+
+                setTimeout(() => {
+                    document.body.classList.remove('global-glitch');
+                    // Adds a permanent creepy shadow after seal is broken
+                    document.body.classList.add('jiangshi-mode');
+                }, 800);
+            }
+        }
+
+        // --- Gimmick 2: Hack Protocol ---
+        let hackProgress = 0;
+        function startHackProtocol() {
+            const terminal = document.getElementById('hacker-terminal');
+            const status = document.getElementById('terminal-status');
+            hackProgress++;
+
+            const newLog = document.createElement('p');
+            newLog.className = 'sys-out';
+
+            if (hackProgress === 1) {
+                newLog.innerHTML = '> Injecting malicious payload (.dll)... [OK]';
+            } else if (hackProgress === 2) {
+                newLog.innerHTML = '> Bypassing anti-spider firewall... [OK]';
+                newLog.style.color = "var(--accent-lime)";
+            } else if (hackProgress >= 3) {
+                newLog.innerHTML = '> <span style="color:#FF00FF;">SYSTEM OVERRIDE COMPLETE.</span> Jiangshi core unsealed.';
+                status.innerText = "OVERRIDDEN";
+                status.style.color = "#FF00FF";
+                document.querySelector('.hack-btn').style.pointerEvents = "none";
+                document.querySelector('.hack-btn').style.opacity = "0.5";
+            }
+
+            terminal.appendChild(newLog);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>

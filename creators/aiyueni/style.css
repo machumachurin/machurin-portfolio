@@ -1,0 +1,673 @@
+﻿/* =========================================
+   Concept: Ai Yueni (愛ゆえに)
+   Theme: Glassmorphism / Deep Sea (Underwater)
+   Features: Frost Glass UI, CSS Bubble Animations, Cool Blues
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap');
+
+:root {
+    --aiyueni-bg-deep: #f5f7fa;
+    /* ピュアホワイト/アイスホワイト */
+    --aiyueni-bg-mid: #e4ebf5;
+    /* 少し濃い背景色 */
+    --aiyueni-accent: #0b1d3a;
+    /* 深海ネイビー */
+    --aiyueni-accent-light: #48cae4;
+    /* アイスブルー/シアン (差し色) */
+    --aiyueni-text: #061329;
+    /* 紺色文字（より濃くして視認性アップ） */
+    --aiyueni-text-muted: #6c757d;
+    --aiyueni-glass-bg: rgba(255, 255, 255, 0.4);
+    --aiyueni-glass-border: rgba(255, 255, 255, 0.9);
+
+    --font-base: 'Zen Kaku Gothic New', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-base);
+    background-color: var(--aiyueni-bg-deep);
+    color: var(--aiyueni-text);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Deep Sea Background setup */
+.underwater-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* JSから動的に変更する明るさ変数（デフォルト 1） */
+    --bg-brightness: 1;
+    /* 海面から深海へ：上から下へ暗くなるグラデーション（明度を改善） */
+    background: linear-gradient(to bottom,
+            color-mix(in srgb, #1e3c72 calc(100% * var(--bg-brightness)), black) 0%,
+            color-mix(in srgb, #164a7c calc(100% * var(--bg-brightness)), black) 40%,
+            color-mix(in srgb, #0b2e59 calc(100% * var(--bg-brightness)), black) 80%,
+            color-mix(in srgb, #0a1d3a calc(100% * var(--bg-brightness)), black) 100%);
+    z-index: -2;
+    transition: background 0.1s linear;
+    /* なめらかな変化 */
+}
+
+/* Light rays crossing the water (水中に差し込む光の帯) */
+.underwater-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(72, 202, 228, 0.15) 0%,
+            transparent 40%);
+    transform-origin: top;
+    transform: skewX(-15deg);
+    animation: lightRays 8s infinite alternate ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes lightRays {
+    0% {
+        transform: skewX(-15deg) translateX(-2%);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: skewX(-20deg) translateX(2%);
+        opacity: 1;
+    }
+}
+
+/* CSS Animated Bubbles */
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    /* 20%から50%に変更して完全な丸にする */
+    box-shadow:
+        10px 10px 20px rgba(11, 29, 58, 0.05),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.4);
+    animation: rise infinite ease-in;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(-120vh) scale(1.5);
+    }
+}
+
+/* =========================================
+   Depth Layers & Sealife Animations
+========================================= */
+.depth-layers-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* グラスパネルの奥、背景の手前 */
+    pointer-events: none;
+    /* クリック邪魔しない */
+    overflow: hidden;
+}
+
+.depth-layer {
+    position: absolute;
+    width: 100%;
+}
+
+/* 1. Surface (最上部・海面) */
+.surface-layer {
+    top: 0;
+    height: 20%;
+}
+
+.wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 50px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0.3;
+    animation: waveAnim 15s infinite linear;
+}
+
+.wave2 {
+    top: 20px;
+    animation-direction: reverse;
+    animation-duration: 20s;
+    opacity: 0.1;
+}
+
+@keyframes waveAnim {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-10%) translateY(10px);
+    }
+
+    100% {
+        transform: translateX(-20%) translateY(0);
+    }
+}
+
+.moon {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.15);
+    /* 0.05から明るく */
+    filter: blur(2px) drop-shadow(0 0 50px rgba(255, 255, 255, 0.4));
+}
+
+.boat {
+    position: absolute;
+    top: 40px;
+    left: -100px;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    /* 0.2から明るく、サイズ少し拡大 */
+    animation: swimRight 45s infinite linear;
+}
+
+/* 2. Midwater (中層・魚) */
+.mid-layer {
+    top: 20%;
+    height: 50%;
+}
+
+.fish {
+    position: absolute;
+    left: -100px;
+    color: rgba(72, 202, 228, 0.5);
+    /* 0.2から明るく (水色系) */
+    filter: drop-shadow(0 0 10px rgba(72, 202, 228, 0.3));
+    animation: swimRight 30s infinite linear;
+}
+
+.fish1 {
+    top: 20%;
+    font-size: 2rem;
+}
+
+/* 3. Deep Sea (深海・潜水艦) */
+.deep-layer {
+    bottom: 0;
+    height: 30%;
+}
+
+.submarine {
+    position: absolute;
+    bottom: 20%;
+    right: -200px;
+    font-size: 4.5rem;
+    color: rgba(255, 255, 255, 0.25);
+    /* 闇に溶けすぎないよう明るく（半透明の白） */
+    filter: drop-shadow(-10px 0 10px rgba(255, 255, 255, 0.1));
+    animation: swimLeft 60s infinite linear;
+}
+
+.anglerfish {
+    position: absolute;
+    bottom: 40%;
+    left: -150px;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    /* 黒寄りから白寄りに変更 */
+    animation: swimRight 50s infinite linear;
+    animation-delay: 20s;
+}
+
+/* 共通スイムアニメーション */
+@keyframes swimRight {
+    0% {
+        transform: translateX(-200px) translateY(0);
+    }
+
+    50% {
+        transform: translateX(50vw) translateY(-20px);
+    }
+
+    100% {
+        transform: translateX(110vw) translateY(10px);
+    }
+}
+
+@keyframes swimLeft {
+    0% {
+        transform: translateX(110vw) translateY(0);
+    }
+
+    50% {
+        transform: translateX(50vw) translateY(30px);
+    }
+
+    100% {
+        transform: translateX(-200px) translateY(-10px);
+    }
+}
+
+/* Base Glass Effect Class (High-Realism Neumorphism) */
+.glass-panel {
+    background: var(--aiyueni-glass-bg);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid var(--aiyueni-glass-border);
+    border-radius: 30px;
+    /* ぷっくり丸い角 */
+    /* シャドウとハイライトの強烈なコンビネーション（離席画面再現） */
+    box-shadow:
+        10px 10px 30px rgba(11, 29, 58, 0.08),
+        /* 外側の柔らかな影 */
+        -10px -10px 30px rgba(255, 255, 255, 0.8),
+        /* 外側のハイライト */
+        inset 2px 2px 5px rgba(255, 255, 255, 0.6),
+        /* 内側の白発光 */
+        inset -2px -2px 5px rgba(11, 29, 58, 0.03);
+    /* 内側の微細な影 */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        15px 15px 35px rgba(11, 29, 58, 0.1),
+        -15px -15px 35px rgba(255, 255, 255, 0.9),
+        inset 2px 2px 5px rgba(255, 255, 255, 0.7),
+        inset -2px -2px 5px rgba(11, 29, 58, 0.05);
+}
+
+/* Mouse Follow Glow (High-performance gradient) */
+.glass-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: radial-gradient(500px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+            rgba(255, 255, 255, 0.15),
+            transparent 50%);
+    z-index: 0;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.glass-panel:hover::after {
+    opacity: 1;
+}
+
+
+
+/* 内部のコンテンツがGlowの後ろに隠れないようにする */
+.glass-panel>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* Layout */
+.glass-dashboard {
+    max-width: 768px;
+    width: 100%;
+    margin: 80px auto;
+    padding: 0 15px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+    box-sizing: border-box;
+}
+
+/* Main Profile Column */
+.profile-col {
+    grid-column: span 5;
+    /* 12コラム中5を占有 */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.main-glass-card {
+    position: relative;
+    padding: 40px 30px;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    /* 親の高さに合わせて伸びる */
+    height: 100%;
+    /* 親の高さに追従 */
+}
+
+/* Profile Image */
+.avatar-container {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    /* slightly visible circle */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+}
+
+.avatar-img {
+    position: absolute;
+    top: -20px;
+    /* Adjusting stand picture to fit circle */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+.profile-name {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin: 10px 0;
+    letter-spacing: 0.1em;
+    color: var(--aiyueni-text);
+    /* --aiyueni-accent から textへ。より濃く */
+    /* ぷっくり文字＋太めの白縁で視認性を強化 */
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.5),
+        2px 2px 4px rgba(11, 29, 58, 0.15);
+}
+
+.profile-title {
+    font-size: 1rem;
+    color: var(--aiyueni-text);
+    /* 水色から濃いネイビーに変更して視認性確保 */
+    margin: 5px 0 20px;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    /* 白の光彩で浮かせる */
+}
+
+.profile-desc {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--aiyueni-text);
+    word-break: keep-all;
+    font-weight: 700;
+    /* ミディアム〜ボールド気味にして読みやすく */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+    /* 薄い白背景を背負わせる */
+}
+
+/* Socials Glass Buttons */
+.social-glass {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--aiyueni-accent);
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    /* 3Dボタン */
+    background: var(--aiyueni-bg-deep);
+    border: 1px solid var(--aiyueni-glass-border);
+    box-shadow:
+        5px 5px 10px rgba(11, 29, 58, 0.1),
+        -5px -5px 10px rgba(255, 255, 255, 0.9),
+        inset 1px 1px 3px rgba(255, 255, 255, 1);
+}
+
+.social-btn:hover {
+    color: var(--aiyueni-accent-light);
+    /* 沈み込むエフェクト */
+    box-shadow:
+        inset 5px 5px 10px rgba(11, 29, 58, 0.1),
+        inset -5px -5px 10px rgba(255, 255, 255, 0.9);
+    transform: translateY(2px);
+}
+
+/* Content Column */
+.content-col {
+    grid-column: span 7;
+    /* 12コラム中7を占有 */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Content Grid for Cards */
+.glass-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Section Titles */
+.glass-title {
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin: 0 0 20px 0;
+    padding-bottom: 15px;
+    border-bottom: 2px dashed rgba(11, 29, 58, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--aiyueni-accent);
+}
+
+/* Media Cards inside Glass */
+.media-card {
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 200px;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.media-card:hover {
+    transform: translateY(-5px);
+}
+
+.media-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    z-index: 0;
+}
+
+.media-card:hover .media-bg {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    align-self: flex-start;
+    color: var(--aiyueni-accent);
+    box-shadow: 0 4px 10px rgba(11, 29, 58, 0.1);
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.card-content span {
+    font-size: 0.8rem;
+    color: var(--aiyueni-accent-light);
+}
+
+/* Schedule Card */
+.schedule-card {
+    padding: 25px;
+}
+
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: var(--aiyueni-bg-deep);
+    border-radius: 20px;
+    border: 1px solid var(--aiyueni-glass-border);
+    transition: all 0.3s ease;
+    box-shadow:
+        4px 4px 10px rgba(11, 29, 58, 0.05),
+        -4px -4px 10px rgba(255, 255, 255, 0.8);
+}
+
+.schedule-item:hover {
+    transform: translateX(5px);
+    box-shadow:
+        inset 3px 3px 8px rgba(11, 29, 58, 0.05),
+        inset -3px -3px 8px rgba(255, 255, 255, 0.8);
+}
+
+.schedule-day {
+    font-weight: 900;
+    width: 60px;
+    color: var(--aiyueni-accent);
+    font-size: 1.1rem;
+}
+
+.schedule-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.schedule-time {
+    font-size: 0.8rem;
+    color: var(--aiyueni-text-muted);
+}
+
+.schedule-title {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Animations */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUpAnim 0.8s ease forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeUpAnim {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stand image overflow effect */
+.stand-decor {
+    position: absolute;
+    bottom: -50px;
+    right: -20px;
+    width: 350px;
+    height: auto;
+    opacity: 0.8;
+    z-index: -1;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+
+    /* 768px幅からの縮小は650px程度で1列に */
+    .glass-dashboard {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .stand-decor {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass-grid {
+        grid-template-columns: 1fr;
+    }
+}

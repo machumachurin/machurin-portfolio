@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Concept: Sanctuary (Nature / Organic)
+   ========================================================================== */
+
+:root {
+    --bg-color: #f0fdf4;
+    /* 非常に淡い緑 */
+    --text-main: #14532d;
+    /* 深い森の緑 */
+    --text-accent: #10b981;
+    /* エメラルド */
+    --font-display: 'Quicksand', sans-serif;
+    --font-body: 'Zen Maru Gothic', sans-serif;
+    /* 丸ゴシック */
+}
+
+/* Apply font overrides explicitly on body as specified by base */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-body);
+}
+
+/* 木漏れ日のような背景アニメーション */
+.nature-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at top left, #ffffff 0%, #dcfce7 100%);
+    overflow: hidden;
+}
+
+.sunbeam {
+    position: absolute;
+    top: -20%;
+    width: 200px;
+    height: 150%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+    transform: rotate(30deg);
+    animation: sway 8s ease-in-out infinite alternate;
+}
+
+.sunbeam-1 {
+    left: 10%;
+}
+
+.sunbeam-2 {
+    left: 40%;
+    animation-delay: -3s;
+    width: 300px;
+    opacity: 0.6;
+}
+
+@keyframes sway {
+    0% {
+        transform: rotate(25deg) translateX(0);
+    }
+
+    100% {
+        transform: rotate(35deg) translateX(50px);
+    }
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-accent);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+    color: var(--text-main);
+}
+
+.concept-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    margin: 0;
+    color: var(--text-main);
+}
+
+.concept-subtitle {
+    font-family: var(--font-display);
+    letter-spacing: 0.2em;
+    color: var(--text-accent);
+    font-weight: 500;
+    margin-top: -10px;
+}
+
+/* 
+ * Nature Card used for Glass Overlay
+ */
+.nature-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    box-shadow: 0 20px 50px rgba(20, 83, 45, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.nature-card:hover {
+    transform: translateY(-5px);
+}
+
+/* 画像は全画面背景になったためエフェクト用だけ残す */
+.nature-img {
+    filter: none;
+}
+
+@media (max-width: 768px) {
+    .concept-title {
+        font-size: 2.5rem;
+    }
+
+    .nature-card {
+        border-radius: 20px;
+    }
+}
+
+/* --------- Theme Toggle Button --------- */
+.theme-toggle {
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    background: none;
+    border: none;
+    color: var(--text-accent);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s;
+    outline: none;
+}
+
+.theme-toggle:hover {
+    transform: rotate(30deg) scale(1.1);
+    color: var(--text-main);
+}
+
+/* --------- Dark Theme Overrides (Nightfall / Moonlit Forest) --------- */
+body {
+    transition: background-color 1s ease, color 1s ease;
+}
+
+body.dark-theme {
+    /* 月明かりの森をイメージした深い色合い */
+    --bg-color: #022c22;
+    --text-main: #ecfdf5;
+    --text-accent: #34d399;
+}
+
+/* 背景グラデーションの反転 */
+body.dark-theme .nature-bg {
+    background: radial-gradient(circle at top left, #064e3b 0%, #022c22 100%);
+}
+
+/* 木漏れ日(サンビーム)を月明かり(ムーンビーム)に */
+body.dark-theme .sunbeam {
+    background: linear-gradient(to right, rgba(167, 243, 208, 0), rgba(167, 243, 208, 0.15), rgba(167, 243, 208, 0));
+}
+
+/* カードの反転 */
+body.dark-theme .nature-card {
+    background: rgba(6, 78, 59, 0.6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(52, 211, 153, 0.1);
+}
+
+/* 画像のトーンを夜の森に合わせる */
+body.dark-theme .nature-img {
+    filter: brightness(0.6) hue-rotate(20deg) contrast(1.1);
+}

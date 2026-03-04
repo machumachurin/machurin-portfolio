@@ -1,0 +1,159 @@
+/* =========================================
+   Antique Concept Style
+   Theme: Steampunk, Sepia, Old Books, TRPG
+========================================= */
+
+:root {
+    --antique-gold: #c6a87c;
+    --antique-dark: #2c251d;
+    --antique-paper: #f4ecd8;
+    --antique-ink: #3b3127;
+    --font-serif: "Shippori Mincho", "Noto Serif JP", serif;
+    --font-display: "Cinzel", serif;
+}
+
+body {
+    background-color: var(--antique-paper);
+    color: var(--antique-ink);
+    font-family: var(--font-serif);
+}
+
+/* ビンテージノイズのオーバーレイ */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('../img/noise.png');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* リンクとボタン */
+a {
+    color: var(--antique-dark);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #8c2a2a;
+    /* 古い血のような赤茶色 */
+}
+
+.back-btn {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--antique-ink);
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+/* コンテナ - 古い洋書の見開き風 */
+.antique-container {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* コーナー装飾（四隅の飾り枠イメージ） */
+.antique-container::before,
+.antique-container::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--antique-gold);
+}
+
+.antique-container::before {
+    top: 15px;
+    left: 15px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.antique-container::after {
+    bottom: 15px;
+    right: 15px;
+    border-left: none;
+    border-top: none;
+}
+
+/* ヒーローセクション */
+.antique-header {
+    text-align: center;
+    border-bottom: 2px double var(--antique-gold);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+}
+
+.antique-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: normal;
+    color: var(--antique-dark);
+    margin: 0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.antique-subtitle {
+    font-family: var(--font-serif);
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: #5a4b3c;
+    font-style: italic;
+    margin-top: 5px;
+    letter-spacing: 0.05em;
+}
+
+/* 文章スタイル */
+.story-text {
+    text-align: justify;
+    text-justify: inter-ideograph;
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+/* ゼンマイ・歯車のアニメーション装飾 */
+.gear {
+    position: absolute;
+    font-size: 8rem;
+    color: rgba(198, 168, 124, 0.15);
+    /* うっすら背景に丸出し */
+    z-index: 0;
+    animation: rotateSlowly 20s linear infinite;
+    pointer-events: none;
+}
+
+.gear-1 {
+    top: 50px;
+    right: -50px;
+}
+
+.gear-2 {
+    bottom: -30px;
+    left: -30px;
+    animation-direction: reverse;
+    font-size: 12rem;
+}
+
+@keyframes rotateSlowly {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .antique-title {
+        font-size: 2rem;
+    }
+}

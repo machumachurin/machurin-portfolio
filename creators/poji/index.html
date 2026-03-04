@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポジポジ子 OFFICIAL PORTAL</title>
+    <!-- Phospor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* スタンプ用のCSSアニメーション */
+        @keyframes stampPop {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(var(--rot-start));
+                opacity: 0;
+            }
+
+            60% {
+                transform: translate(-50%, -50%) scale(1.2) rotate(var(--rot-mid));
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotate(var(--rot-end));
+                opacity: 1;
+            }
+        }
+
+        @keyframes stampFade {
+            to {
+                transform: translate(-50%, -50%) scale(1.5) rotate(var(--rot-end));
+                opacity: 0;
+            }
+        }
+
+        .poji-stamp {
+            position: absolute;
+            pointer-events: none;
+            z-index: 9999;
+            font-weight: 900;
+            text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+            /* 白縁取り */
+            animation: stampPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .poji-stamp.fade-out {
+            animation: stampFade 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Parallax Floating Shapes (シール風) -->
+    <div class="floating-shapes">
+        <div class="parallax-wrapper" data-speed="0.25">
+            <div class="shape shape-1"></div>
+        </div>
+        <div class="parallax-wrapper" data-speed="-0.15">
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="parallax-wrapper" data-speed="0.3">
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="parallax-wrapper" data-speed="-0.2">
+            <div class="shape shape-4"></div>
+        </div>
+        <div class="parallax-wrapper" data-speed="0.1">
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn"><i class="ph-bold ph-arrow-left"></i> ESCAPE TO HUB</a>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="concept-container">
+
+        <!-- 1. HERO SECTION -->
+        <section class="hero fade-up">
+            <div class="icon-ring">
+                <div class="poji-icon">
+                    <img src="./img/poji_icon.png" alt="ポジ子"
+                        style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%;">
+                </div>
+            </div>
+
+            <h1 class="poji-title">ポジポジ子 <span>💙</span> POJIKO</h1>
+            <p class="poji-subtitle">*\ 💙みんなを愛すポジティブ星人💙 /*</p>
+
+            <div class="live-badge-container">
+                <div class="live-badge" id="onair-badge">
+                    <div class="pulse-ring"></div>
+                    NOW ON AIR
+                </div>
+            </div>
+
+            <p class="poji-desc">いつも元気なセージOTP！Twitch発の最高にかわいいクソガキ✨<br>合言葉は「ぽじポジ〜！」</p>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://twitch.tv/pojipojiko3" target="_blank" class="poji-btn" title="Twitch">
+                    <i class="ph-fill ph-twitch-logo" style="color:#9146FF;"></i>
+                </a>
+                <a href="https://youtube.com/@pojipojikochan" target="_blank" class="poji-btn" title="YouTube">
+                    <i class="ph-fill ph-youtube-logo" style="color:#FF0000;"></i>
+                </a>
+                <a href="https://x.com/pojipojikochan" target="_blank" class="poji-btn" title="X(Twitter)">
+                    <i class="ph-fill ph-x-logo" style="color:#1DA1F2;"></i>
+                </a>
+                <a href="https://www.tiktok.com/@pojipojikochan" target="_blank" class="poji-btn" title="TikTok">
+                    <i class="ph-fill ph-tiktok-logo" style="color:#000;"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT & INTERACTIVE GIMMICKS -->
+        <div class="poji-content-grid" style="margin-bottom: 60px;">
+            <!-- Left: Profile & Outfit (Takes up 7/12 cols) -->
+            <div class="schedule-column fade-up delay-1">
+                <div class="glass-box" style="height: 100%;">
+                    <div class="section-title"><i class="ph-fill ph-info"></i> ABOUT ME</div>
+                    <p class="profile-text">
+                        ポジティブ国出身のポジティブとネガティブのハーフ、ポジポジ子ちゃんです💙<br>
+                        生後3歳でスーパーマリオをクリアした伝説を持ち、ゲームは全然うまくならないけれど、楽しくわくわくプレイすることは誰にも負けない！！<br>
+                        夢は<mark>世界中の人に楽しいゲーム配信を届けること</mark>✨
+                    </p>
+
+                    <div
+                        style="font-size: 0.9rem; font-weight: bold; color: var(--text-main); line-height: 1.6; margin-bottom: 20px; background: rgba(255,255,255,0.5); padding: 15px; border-radius: 12px; border: 2px dashed var(--accent-blue);">
+                        <ul
+                            style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <li><span style="color:var(--text-muted);">誕生日:</span> 8月21日</li>
+                            <li><span style="color:var(--text-muted);">年 齢:</span> 永遠の20歳</li>
+                            <li><span style="color:var(--text-muted);">血液型:</span> B型</li>
+                            <li><span style="color:var(--text-muted);">出身地:</span> ポジティブ国</li>
+                            <li style="grid-column: 1 / -1;"><span style="color:var(--text-muted);">体型:</span> B(PCUP)
+                                W(???) H(???)</li>
+                            <li style="grid-column: 1 / -1;"><span style="color:var(--text-muted);">好きなゲーム:</span>
+                                VALORANT</li>
+                        </ul>
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.1);">
+                            <span style="color:var(--accent-pink);">総合タグ:</span> #みてみてポジ子<br>
+                            <span style="color:var(--accent-blue);">FAタグ:</span> #ポジ絵
+                        </div>
+                    </div>
+
+                    <!-- Outfit Toggle -->
+                    <div class="outfit-viewer-container">
+                        <h4 style="margin:0 0 15px 0; color:var(--text-main); font-size:1.1rem; font-weight:900;"><i
+                                class="ph-fill ph-t-shirt"></i> OUTFIT VIEWER</h4>
+                        <div style="width:120px; height:120px; background:#fff; border-radius:50%; margin-bottom:15px; overflow:hidden; border:4px solid var(--accent-pink); box-shadow: 4px 4px 0 var(--accent-blue);"
+                            id="outfit-preview">
+                            <img id="outfit-img" src="./img/poji_icon.png"
+                                style="width:100%; height:100%; object-fit:cover; object-position: center 15%; transition:opacity 0.3s;"
+                                alt="Outfit">
+                        </div>
+
+                        <label
+                            style="display:flex; align-items:center; cursor:pointer; gap:10px; font-size: 0.95rem; font-weight:800;">
+                            <span id="outfit-label-1" style="color:var(--text-main);">通常</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="outfit-switch" onchange="toggleOutfit(this)">
+                                <span class="slider"></span>
+                            </div>
+                            <span id="outfit-label-2" style="color:var(--text-muted);">シルエット</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Widgets (5/12 cols) -->
+            <div class="widgets-column fade-up delay-2">
+
+                <!-- Music Widget -->
+                <div class="widget-card music-widget"
+                    style="aspect-ratio: 5 / 2; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="music-cover">
+                        <img src="./img/poji_icon.png" alt="Song Cover">
+                    </div>
+                    <div class="music-info">
+                        <div class="now-playing">NOW PLAYING</div>
+                        <h3>KIRA KIRA KAWAI <br> OVERLOAD</h3>
+                        <p>Poji Pojiko</p>
+                    </div>
+                    <div class="eq-bars">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <!-- Timeline Info (X Widget) -->
+                <div class="widget-card timeline-widget"
+                    style="aspect-ratio: 5 / 4; overflow-y: auto; display: flex; flex-direction: column;">
+                    <div class="timeline-header"><i class="ph-fill ph-twitter-logo" style="color:#1DA1F2;"></i>
+                        LATEST TWEET</div>
+                    <div class="tweet-user">
+                        <img src="./img/poji_icon.png" alt="Poji">
+                        <div>
+                            <span class="name">ポジポジ子💙</span>
+                            <span class="id">@pojipojikochan</span>
+                        </div>
+                    </div>
+                    <div class="tweet-content">
+                        <p class="text">今日の配信もありがと～！💙<br>みんなの応援のおかげで無事ランク上がれました✨<br>GGWP！！</p>
+                        <span class="time">3時間前</span>
+                    </div>
+                </div>
+
+                <!-- Discord Banner Widget -->
+                <a href="#" class="discord-banner" style="aspect-ratio: 5 / 2; display: flex; align-items: center;">
+                    <i class="ph-fill ph-discord-logo"></i>
+                    <div>
+                        <h3>Join our Server!</h3>
+                        <p>ポジ星人あつまれ〜！</p>
+                    </div>
+                    <span class="arrow"><i class="ph-bold ph-caret-right"></i></span>
+                </a>
+
+                <!-- Poji's Sticker Gun Info (Emergency Toggle / TOY BOX) -->
+                <div class="widget-card" id="sticker-gun-widget"
+                    style="position: relative; text-align:center; padding: 40px 20px; display:flex; flex-direction:column; justify-content:center; flex: 1; background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); border: 3px dashed var(--accent-pink); overflow: hidden;">
+
+                    <!-- 中身のスイッチ部分 -->
+                    <div id="sticker-switch-container"
+                        style="opacity: 0; pointer-events: none; transition: opacity 0.5s;">
+                        <i class="ph-fill ph-paint-brush-broad"
+                            style="font-size: 3.5rem; color: var(--accent-yellow); margin-bottom: 10px; filter: drop-shadow(2px 2px 0 var(--accent-pink));"></i>
+                        <h3
+                            style="font-size: 1.3rem; font-weight: 900; color: var(--text-main); margin-bottom: 15px; background: var(--accent-cyan); display:inline-block; padding: 5px 10px; border: 2px solid var(--text-main);">
+                            STICKER SYSTEM ONLINE</h3>
+                        <br>
+                        <label
+                            style="display:inline-flex; align-items:center; cursor:pointer; gap:10px; font-size: 1.1rem; font-weight:900; background: #fff; padding: 10px 20px; border-radius: 30px; border: 3px solid var(--text-main); box-shadow: 4px 4px 0 var(--accent-blue);">
+                            <span id="sticker-label-off" style="color:var(--accent-pink);">OFF</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="sticker-toggle">
+                                <span class="slider"></span>
+                            </div>
+                            <span id="sticker-label-on" style="color:var(--text-muted);">ON</span>
+                        </label>
+                    </div>
+
+                    <!-- 外側のカバー（ガラスケース風） -->
+                    <div id="sticker-cover"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(220, 230, 240, 0.9); border: 4px solid var(--accent-blue); display:flex; flex-direction:column; justify-content:center; align-items:center; cursor: pointer; transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s; z-index: 10;">
+                        <i class="ph-fill ph-warning"
+                            style="font-size: 4rem; color: var(--accent-pink); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.3rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px;">
+                            TOY BOX</h3>
+                        <p style="font-size: 0.9rem; font-weight: bold; color: var(--text-muted); margin:0;">
+                            タップしてロック解除 <br> <span id="unlock-count"
+                                style="color: var(--accent-blue); font-size: 1.3rem;">(0/5)</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. WEEKLY SCHEDULE SECTION -->
+        <section class="schedule-section fade-up delay-3" style="margin-bottom: 60px;">
+            <div class="schedule-block">
+                <div class="section-title" style="transform: rotate(1deg);"><i class="ph-fill ph-calendar-check"></i>
+                    WEEKLY SCHEDULE</div>
+                <p style="color:var(--text-muted); font-size: 0.85rem; font-weight: bold; margin-bottom: 20px;">
+                    ※時間は前後する可能性があります。最新情報はX(Twitter)をチェック！</p>
+
+                <!-- スケジュール単独の全幅または中央揃えレイアウト -->
+                <div class="schedule-column" style="width: 100%;">
+                    <div class="schedule-grid" id="schedule-container">
+                        <div style="text-align:center; padding:20px; font-weight:bold; color:var(--accent-blue);">
+                            Loading Schedule...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- 4. FOOTER / MARQUEE CAUTION TAPE -->
+        <div class="marquee-container fade-up delay-3">
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    ⚠️ POJI POJIKO OFFICIAL ARCHIVE ⚠️ DON'T CROSS THE LINE ⚠️ CHECK OUT MY LATEST STREAMS ⚠️ GGWP 💙
+                    ⚠️ POJI POJIKO OFFICIAL ARCHIVE ⚠️ DON'T CROSS THE LINE ⚠️ CHECK OUT MY LATEST STREAMS ⚠️ GGWP 💙
+                </div>
+            </div>
+        </div>
+
+        <footer
+            style="text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.85rem; font-weight: bold; margin-bottom: 20px;">
+            &copy; 2026 Poji Pojiko. All Rights Reserved.
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // アニメーション表示
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in, .fade-up').forEach(el => el.classList.add('visible'));
+            }, 100);
+
+            // Twitch APIからのLive状態の取得
+            async function checkTwitchLive(channelName) {
+                try {
+                    const response = await fetch(`https://decapi.me/twitch/uptime/${channelName}`);
+                    const text = await response.text();
+                    const textLower = text.toLowerCase();
+                    const liveStatusEl = document.getElementById('onair-badge');
+
+                    if (textLower.includes('offline') || textLower.includes('not live') || textLower.includes('error')) {
+                        liveStatusEl.classList.remove('active');
+                        liveStatusEl.innerHTML = '<i class="ph-fill ph-broadcast"></i> OFFLINE';
+                        liveStatusEl.style.color = "var(--text-muted)";
+                        liveStatusEl.style.borderColor = "var(--text-muted)";
+                        liveStatusEl.style.background = "#fff";
+                    } else {
+                        liveStatusEl.classList.add('active');
+                    }
+                } catch (e) {
+                    console.error('Twitch情報の取得に失敗しました', e);
+                }
+            }
+            checkTwitchLive('pojipojiko3');
+
+            // 週間スケジュールの生成
+            const todayIndex = new Date().getDay();
+            const mapDayToIndex = { 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 0: 6 };
+            const adjustedTodayIndex = mapDayToIndex[todayIndex];
+
+            const dummyData = {
+                schedule: [
+                    { day_ja: "月", day_en: "MON", time: "20:00", title: "参加型 VALORANT", platform: "Twitch", color: "#9146FF" },
+                    { day_ja: "火", day_en: "TUE", time: "21:00", title: "雑談＆マシュマロ", platform: "YouTube", color: "#FF0000" },
+                    { day_ja: "水", day_en: "WED", time: "OFF", title: "おやすみ", platform: "-", color: "#cbd5e1" },
+                    { day_ja: "木", day_en: "THU", time: "20:00", title: "ホラーゲーム", platform: "Twitch", color: "#9146FF" },
+                    { day_ja: "金", day_en: "FRI", time: "21:00", title: "歌枠 / Karaoke", platform: "YouTube", color: "#FF0000" },
+                    { day_ja: "土", day_en: "SAT", time: "18:00", title: "耐久配信⚡", platform: "Twitch", color: "#9146FF" },
+                    { day_ja: "日", day_en: "SUN", time: "20:00", title: "振り返り雑談", platform: "Twitch", color: "#9146FF" }
+                ]
+            };
+
+            const container = document.getElementById('schedule-container');
+            container.innerHTML = '';
+
+            dummyData.schedule.forEach((item, index) => {
+                const isToday = index === adjustedTodayIndex;
+                const card = document.createElement('div');
+                card.className = `schedule-card ${isToday ? 'today' : ''}`;
+
+                let iconHtml = '';
+                if (item.platform.includes('Twitch')) iconHtml = `<i class="ph-fill ph-twitch-logo" style="color:${item.color};"></i>`;
+                else if (item.platform.includes('YouTube')) iconHtml = `<i class="ph-fill ph-youtube-logo" style="color:${item.color};"></i>`;
+                else iconHtml = `<i class="ph-bold ph-minus" style="color:var(--text-muted);"></i>`;
+
+                const todayLabel = isToday ? `<span class="today-badge">TODAY</span>` : '';
+
+                card.innerHTML = `
+                    <div class="schedule-day">
+                        <span class="ja">${item.day_ja}</span>
+                        <span class="en">${item.day_en}</span>
+                    </div>
+                    <div class="schedule-info">
+                        <div class="title-row">
+                            <span class="title">${item.title}</span>
+                            ${todayLabel}
+                        </div>
+                        <div class="time"><i class="ph-bold ph-clock"></i> ${item.time} &nbsp;<span class="platform">${iconHtml}</span></div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Parallax Scroll Effect
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                document.querySelectorAll('.parallax-wrapper').forEach(el => {
+                    const speed = parseFloat(el.getAttribute('data-speed')) || 0;
+                    el.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+        });
+
+        // -----------------------------------------
+        // Interactive Features: Outfit Toggle & Sticker Gun
+        // -----------------------------------------
+
+        function toggleOutfit(cb) {
+            const img = document.getElementById('outfit-img');
+            const l1 = document.getElementById('outfit-label-1');
+            const l2 = document.getElementById('outfit-label-2');
+
+            img.style.opacity = '0';
+
+            setTimeout(() => {
+                if (cb.checked) {
+                    img.style.filter = "brightness(0) invert(0.8) sepia(1) hue-rotate(180deg) saturate(3)";
+                    l1.style.color = "var(--text-muted)";
+                    l2.style.color = "var(--accent-pink)";
+                } else {
+                    img.style.filter = "";
+                    l1.style.color = "var(--text-main)";
+                    l2.style.color = "var(--text-muted)";
+                }
+                img.style.opacity = '1';
+            }, 300);
+        }
+
+        // --- Poji's Sticker Gun (いたずらスタンプ) ---
+        const stickerTexts = ["GG!", "W", "草", "ぽじ〜！", "NICE!", "💙", "✨", "🧊", "🎮", "神エイム"];
+        const stickerColors = ["var(--accent-blue)", "var(--accent-yellow)", "var(--accent-pink)", "var(--accent-sage)", "#ef4444"];
+
+        // --- カバー破壊（ロック解除）ギミック ---
+        let unlockClicks = 0;
+        const requiredClicks = 5;
+        const stickerCover = document.getElementById('sticker-cover');
+        const unlockCountEl = document.getElementById('unlock-count');
+        const switchContainer = document.getElementById('sticker-switch-container');
+        const stickerToggle = document.getElementById('sticker-toggle');
+        const lOff = document.getElementById('sticker-label-off');
+        const lOn = document.getElementById('sticker-label-on');
+
+        if (stickerCover) {
+            stickerCover.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (unlockClicks >= requiredClicks) return;
+
+                unlockClicks++;
+                unlockCountEl.innerText = `(${unlockClicks}/${requiredClicks})`;
+
+                // 叩いている感を出すアニメーション
+                stickerCover.style.transform = "scale(0.95) rotate(" + ((Math.random() - 0.5) * 10) + "deg)";
+                setTimeout(() => {
+                    if (unlockClicks < requiredClicks) {
+                        stickerCover.style.transform = "scale(1) rotate(0deg)";
+                    }
+                }, 100);
+
+                if (unlockClicks >= requiredClicks) {
+                    // カバーが吹き飛ぶ
+                    stickerCover.style.transform = "translateY(-50px) scale(1.1) rotate(15deg)";
+                    stickerCover.style.opacity = "0";
+                    setTimeout(() => {
+                        stickerCover.style.display = "none";
+                        // 中のスイッチをアクティブに
+                        switchContainer.style.opacity = "1";
+                        switchContainer.style.pointerEvents = "auto";
+                    }, 500);
+                }
+            });
+        }
+
+        // トグルの色変え
+        if (stickerToggle) {
+            stickerToggle.addEventListener('change', () => {
+                if (stickerToggle.checked) {
+                    lOff.style.color = "var(--text-muted)";
+                    lOn.style.color = "var(--accent-blue)";
+                } else {
+                    lOff.style.color = "var(--accent-pink)";
+                    lOn.style.color = "var(--text-muted)";
+                }
+            });
+        }
+
+        // スタンプを生成する関数
+        function createSticker(x, y) {
+            const sticker = document.createElement("div");
+            sticker.className = "poji-stamp";
+
+            // ランダムな内容と色
+            const text = stickerTexts[Math.floor(Math.random() * stickerTexts.length)];
+            const color = stickerColors[Math.floor(Math.random() * stickerColors.length)];
+
+            sticker.innerText = text;
+            sticker.style.left = x + "px";
+            sticker.style.top = y + "px";
+            sticker.style.color = color;
+
+            // サイズをランダムに (少し大きめ)
+            sticker.style.fontSize = (Math.random() * 2.5 + 1.5) + "rem";
+
+            // 傾きのアニメーション変数をセット
+            const rotBase = (Math.random() - 0.5) * 60; // -30 to 30
+            sticker.style.setProperty('--rot-start', (rotBase - 30) + 'deg');
+            sticker.style.setProperty('--rot-mid', (rotBase + 10) + 'deg');
+            sticker.style.setProperty('--rot-end', rotBase + 'deg');
+
+            document.body.appendChild(sticker);
+
+            // 3秒後に消えるアニメーションを開始
+            setTimeout(() => {
+                sticker.classList.add('fade-out');
+                // アニメーション完了後にDOMから削除
+                setTimeout(() => {
+                    sticker.remove();
+                }, 300); // fade-out duration
+            }, 3000 + Math.random() * 2000);
+        }
+
+        // クリック時
+        let isMouseDown = false;
+        let lastStickerTime = 0;
+
+        document.addEventListener("mousedown", (e) => {
+            // トグルがOFFの場合はスタンプ機能を発動させない
+            if (!stickerToggle || !stickerToggle.checked) return;
+
+            // リンクやボタン、ウィジェットの上では発動しない
+            if (e.target.closest('a') || e.target.closest('button') || e.target.closest('label') || e.target.closest('input') || e.target.closest('#sticker-cover')) return;
+            if (e.button !== 0) return; // 左クリックのみ
+
+            isMouseDown = true;
+            createSticker(e.pageX, e.pageY);
+            lastStickerTime = Date.now();
+        });
+
+        document.addEventListener("mouseup", () => {
+            isMouseDown = false;
+        });
+
+        // ドラッグ（押しっぱなし）で連続スタンプ
+        document.addEventListener("mousemove", (e) => {
+            if (!isMouseDown) return;
+            // トグルがOFFの場合はスタンプ機能を発動させない
+            if (!stickerToggle || !stickerToggle.checked) {
+                isMouseDown = false;
+                return;
+            }
+
+            // 短時間に連続で出過ぎないよう制限（100ms間隔）
+            const now = Date.now();
+            if (now - lastStickerTime > 100) {
+                // 少し位置をずらしてスタンプ
+                const offsetX = (Math.random() - 0.5) * 40;
+                const offsetY = (Math.random() - 0.5) * 40;
+                createSticker(e.pageX + offsetX, e.pageY + offsetY);
+                lastStickerTime = now;
+            }
+        });
+
+        // タッチデバイス対応
+        document.addEventListener("touchstart", (e) => {
+            if (!stickerToggle || !stickerToggle.checked) return;
+
+            if (e.target.closest('a') || e.target.closest('button') || e.target.closest('label') || e.target.closest('input') || e.target.closest('#sticker-cover')) return;
+            const touch = e.touches[0];
+            createSticker(touch.pageX, touch.pageY);
+        }, { passive: true });
+
+    </script>
+</body>
+
+</html>
+
+</script>
+</body>
+
+</html>

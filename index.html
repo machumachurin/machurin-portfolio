@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machurin | Concept Hub</title>
+    <!-- View Transitions APIの有効化(Hub <-> BaseModel間のアニメーション用) -->
+    <meta name="view-transition" content="same-origin" />
+
+    <!-- Google Fonts: プレミアムで洗練されたセリフ／サンセリフ体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- CSS: Custom and Hub Base -->
+    <link rel="stylesheet" href="./assets/css/hub.css?v=7">
+</head>
+
+<body>
+    <!-- 背景用のパーティクル / 光の表現 -->
+    <div class="ambient-background">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- コンテンツコンテナ -->
+    <main class="hub-container">
+
+
+        <header class="hub-header fade-up">
+            <h1 class="hub-title">MACHURIN</h1>
+            <p class="hub-subtitle">Web Design & Creation</p>
+            <p class="hub-desc">
+                あなたの活動を彩るオリジナルWebサイトを制作します！<br>
+                「こんなサイトが欲しい」という完成イメージの参考に、以下のコンセプト部屋を覗いてみてください。<br>
+                もちろん、一覧にない全く新しいデザインの相談や制作も大歓迎です！
+            </p>
+        </header>
+
+
+
+        <!-- サンプルセクション（統合版） -->
+        <div class="parent-box fade-up">
+            <h2 class="portal-category-title"><i class="ph-fill ph-planet"></i> サンプル</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #94a3b8;">
+                様々な世界観のベースデザインや、配信者様向けの簡易サンプルです。
+            </p>
+
+            <!-- コンセプトモデル -->
+
+            <div class="glass-scroll-container delay-1">
+                <section class="portals-section" style="margin: 0; width: 100%;">
+                    <button class="scroll-btn left-btn" aria-label="左へスクロール" style="border-radius: 10px 0 0 10px;"><i
+                            class="ph ph-caret-left"></i></button>
+                    <div class="portals-container">
+
+
+                        <!-- 扉A: Nocturne (Elegant & Dark) -->
+                        <a href="./concepts/sample-nocturne/index.html" class="portal-card" id="portal-nocturne">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-moon-stars"></i></div>
+                                <h2 class="portal-title">Nocturne</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉B: Cyber (Neon & Pop) -->
+                        <a href="./concepts/sample-cyber/index.html" class="portal-card" id="portal-cyber">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-lightning"></i></div>
+                                <h2 class="portal-title">Cyber Neon</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉C: Nature (Organic & Light) -->
+                        <a href="./concepts/sample-nature/index.html" class="portal-card" id="portal-nature">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-leaf"></i></div>
+                                <h2 class="portal-title">Sanctuary</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉D: Wa (Zen / Miyabi) -->
+                        <a href="./concepts/sample-wa/index.html" class="portal-card" id="portal-wa">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-flower-lotus"></i></div>
+                                <h2 class="portal-title">Wa / Zen</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉E: Y2K (Gal / Scrapbook / Pop) -->
+                        <a href="./concepts/sample-y2k/index.html" class="portal-card" id="portal-y2k">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-sparkle"></i></div>
+                                <h2 class="portal-title">Y2K / Gal</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉F: Antique (Steampunk / TRPG) -->
+                        <a href="./concepts/sample-antique/index.html" class="portal-card" id="portal-antique">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-clock-countdown"></i></div>
+                                <h2 class="portal-title">Antique</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉G: Rome (Ancient Rome / Temple) -->
+                        <a href="./concepts/sample-rome/index.html" class="portal-card" id="portal-rome">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-buildings"></i></div>
+                                <h2 class="portal-title">Ancient Rome</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉H: Hawaii (Tropical Resort) -->
+                        <a href="./concepts/sample-hawaii/index.html" class="portal-card" id="portal-hawaii">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-sun"></i></div>
+                                <h2 class="portal-title">Hawaii Resort</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉I: Sumo (Japanese Traditional) -->
+                        <a href="./concepts/sample-sumo/index.html" class="portal-card" id="portal-sumo">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-hands-clapping"></i></div>
+                                <h2 class="portal-title">Sumo (大相撲)</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉J: Chocolatier (Sweet & Patisserie) -->
+                        <a href="./concepts/sample-choco/index.html" class="portal-card" id="portal-choco">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-cookie"></i></div>
+                                <h2 class="portal-title">Chocolatier</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉K: Art (Museum & Canvas) -->
+                        <a href="./concepts/sample-art/index.html" class="portal-card" id="portal-art">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-palette"></i></div>
+                                <h2 class="portal-title">Museum of Art</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉L: Origami (Washi & Geometry) -->
+                        <a href="./concepts/sample-origami/index.html" class="portal-card" id="portal-origami">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-paper-plane-right"></i></div>
+                                <h2 class="portal-title">Origami</h2>
+                            </div>
+                        </a>
+
+                    </div>
+                    <button class="scroll-btn right-btn" aria-label="右へスクロール" style="border-radius: 0 10px 10px 0;"><i
+                            class="ph ph-caret-right"></i></button>
+                </section>
+            </div>
+
+            <!-- 実際のクリエイター（配信者）向けセクション -->
+
+            <div class="glass-scroll-container delay-2">
+                <section class="portals-section" style="margin: 0; width: 100%;">
+                    <button class="scroll-btn left-btn" aria-label="左へスクロール" style="border-radius: 10px 0 0 10px;"><i
+                            class="ph ph-caret-left"></i></button>
+                    <div class="portals-container">
+
+                        <!-- 扉D: PojiPojiKo (Streamer & Pop) -->
+                        <a href="./creators/poji/index.html" class="portal-card" id="portal-poji">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-heart"></i></div>
+                                <h2 class="portal-title">ポジポジ子</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉E: Urameshi (Streamer & Cyber) -->
+                        <a href="./creators/urameshi/index.html" class="portal-card" id="portal-urameshi">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <h2 class="portal-title">うらめし</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉F: Saiki (Shachiku & Brutalism) -->
+                        <a href="./creators/saiki/index.html" class="portal-card" id="portal-saiki">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-briefcase"></i></div>
+                                <h2 class="portal-title">赤峰さいき</h2>
+                            </div>
+                        </a>
+
+                        <!-- 扉G: Ai Yueni (Glassmorphism & Underwater) -->
+                        <a href="./creators/aiyueni/index.html" class="portal-card" id="portal-aiyueni">
+                            <div class="portal-bg"></div>
+                            <div class="portal-content">
+                                <div class="portal-icon"><i class="ph ph-drop"></i></div>
+                                <h2 class="portal-title">愛ゆえに</h2>
+                            </div>
+                        </a>
+
+                    </div>
+                    <button class="scroll-btn right-btn" aria-label="右へスクロール" style="border-radius: 0 10px 10px 0;"><i
+                            class="ph ph-caret-right"></i></button>
+                </section>
+            </div>
+        </div>
+
+        </div>
+
+        <!-- 料金・依頼ページへの導線 (CTA) -->
+        <style>
+            .hub-cta-wrapper {
+                margin: 100px auto 80px auto;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .hub-cta-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 20px;
+                background: rgba(10, 12, 18, 0.2);
+                color: var(--text-muted);
+                padding: 20px 50px;
+                border-radius: 50px;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                font-family: var(--font-body);
+                /* 日本語なので明朝ではなくゴシック系に */
+                font-weight: 500;
+                letter-spacing: 2px;
+                text-decoration: none;
+                backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
+                transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+                font-size: 1.1rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hub-cta-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+                transition: all 0.5s ease;
+            }
+
+            .hub-cta-btn:hover {
+                background: rgba(255, 255, 255, 0.02);
+                border-color: rgba(255, 255, 255, 0.3);
+                color: #fff;
+                box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+                transform: translateY(-2px);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            }
+
+            .hub-cta-btn:hover::before {
+                left: 100%;
+                transition: all 0.8s ease;
+            }
+
+            .hub-cta-btn i {
+                font-size: 1.3rem;
+                transition: transform 0.4s ease;
+            }
+
+            .hub-cta-btn:hover i {
+                transform: translateX(5px);
+            }
+        </style>
+        <div class="hub-cta-wrapper fade-up delay-2">
+            <a href="pricing.html" class="hub-cta-btn">料金説明 <i class="ph-light ph-arrow-right"></i></a>
+        </div>
+
+        <footer class="hub-footer fade-up delay-2">
+            <p>&copy; 2026 Machurin Portfolio. Choose your reality.</p>
+        </footer>
+    </main>
+
+    <script src="./assets/js/hub.js"></script>
+</body>
+
+</html>

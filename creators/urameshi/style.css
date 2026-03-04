@@ -1,0 +1,656 @@
+@charset "UTF-8";
+
+/* =========================================
+   URAMESHI: CYBER JIANGSHI THEME
+========================================= */
+
+:root {
+    /* Color Palette (Cyberpunk x Jiangshi) */
+    --bg-deep: #0B0514;
+    /* 深黒/ダークパープル（夜更け） */
+    --card-bg: rgba(22, 11, 40, 0.7);
+    /* 青紫がかったカード背景 */
+
+    --accent-purple: #9030FF;
+    /* ネオンパープル（主役のサイバー色） */
+    --accent-lime: #39FF14;
+    /* ネオンライム（お札や毒々しさ・キョンシーのアクセント） */
+    --accent-magenta: #FF00FF;
+    /* グリッチやサブアクセント */
+
+    --text-main: #E2DDF8;
+    /* 読みやすい白紫 */
+    --text-muted: #8E82B5;
+
+    /* Effects */
+    --neon-glow-lime: 0 0 10px rgba(57, 255, 20, 0.5), 0 0 20px rgba(57, 255, 20, 0.3);
+    --neon-glow-purple: 0 0 10px rgba(144, 48, 255, 0.5), 0 0 20px rgba(144, 48, 255, 0.3);
+    --shadow-cyber: 6px 6px 0px rgba(144, 48, 255, 0.3);
+    /* ズレたようなサイバースピードの影 */
+}
+
+/* =========================================
+   Base & Reset
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    /* サイバー感のある背景グリッド */
+    background-image:
+        linear-gradient(rgba(144, 48, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(144, 48, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* =========================================
+   Background Effects (Noise, Spider Web, Scanlines)
+========================================= */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1));
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 99;
+}
+
+/* Spider web geometric pattern via css or simple gradient shapes */
+.spider-web-bg {
+    position: fixed;
+    top: -20vh;
+    right: -20vw;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, transparent 20%, rgba(57, 255, 20, 0.03) 21%, transparent 22%),
+        radial-gradient(circle, transparent 40%, rgba(57, 255, 20, 0.03) 41%, transparent 42%),
+        radial-gradient(circle, transparent 60%, rgba(57, 255, 20, 0.03) 61%, transparent 62%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    /* Adding spider 'threads' using conic gradient */
+    background-image: conic-gradient(from 0deg,
+            rgba(57, 255, 20, 0.05) 1deg, transparent 2deg 44deg,
+            rgba(57, 255, 20, 0.05) 45deg, transparent 46deg 89deg,
+            rgba(57, 255, 20, 0.05) 90deg, transparent 91deg 134deg,
+            rgba(57, 255, 20, 0.05) 135deg, transparent 136deg 179deg,
+            rgba(57, 255, 20, 0.05) 180deg, transparent 181deg 224deg,
+            rgba(57, 255, 20, 0.05) 225deg, transparent 226deg 269deg,
+            rgba(57, 255, 20, 0.05) 270deg, transparent 271deg 314deg,
+            rgba(57, 255, 20, 0.05) 315deg, transparent 316deg 359deg);
+}
+
+/* =========================================
+   Layout System (12-Column Grid)
+========================================= */
+.urameshi-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 100px auto 60px;
+    /* navの分を下げる */
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Left side profile (Takes 7 cols) */
+.profile-column {
+    grid-column: span 7;
+    background: var(--card-bg);
+    border: 2px solid var(--accent-purple);
+    border-radius: 4px;
+    /* サイバーなのでエッジを少し鋭く */
+    padding: 40px;
+    position: relative;
+    box-shadow: var(--shadow-cyber);
+    /* 蜘蛛の巣状のようなクリップパス（角を削る） */
+    clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+
+.profile-column::after {
+    /* クリックパスで消えた左上と右下のボーダーの補完装飾 */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-lime);
+}
+
+/* Right side portal (Takes 5 cols) */
+.portal-column {
+    grid-column: span 5;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Schedule section directly under main grid (Takes 6 cols) */
+.schedule-column {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   Components (Profile & Status)
+========================================= */
+.ofuda-tag {
+    position: absolute;
+    top: -15px;
+    right: 30px;
+    background: var(--accent-lime);
+    color: var(--bg-deep);
+    padding: 10px 5px 20px;
+    width: 35px;
+    text-align: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    box-shadow: 2px 2px 0 var(--accent-purple);
+    z-index: 20;
+    animation: swing 3s ease-in-out infinite alternate;
+    transform-origin: top center;
+}
+
+@keyframes swing {
+    from {
+        transform: rotate(-5deg);
+    }
+
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+.avatar-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.glitch-avatar {
+    width: 140px;
+    height: 140px;
+    border: 3px solid var(--accent-purple);
+    border-radius: 50%;
+    /* 丸ではなく六角形に変更しても面白い */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--neon-glow-purple);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.2) sepia(0.2) hue-rotate(240deg);
+    /* わずかに紫がかったサイバー風補正 */
+}
+
+.urameshi-name {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-main);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.urameshi-name span {
+    font-size: 1.2rem;
+    color: var(--accent-lime);
+}
+
+.status-box {
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px dashed var(--accent-purple);
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--accent-purple);
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.status-live {
+    color: var(--accent-lime);
+    text-shadow: var(--neon-glow-lime);
+}
+
+.blink-text {
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+.hp-bar-container {
+    width: 100%;
+    height: 12px;
+    background: rgba(144, 48, 255, 0.2);
+    border: 1px solid var(--accent-purple);
+    margin-bottom: 5px;
+}
+
+.hp-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-lime);
+    box-shadow: 0 0 5px var(--accent-lime);
+    transition: width 0.3s ease-out;
+}
+
+.status-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.about-text-box {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+.about-text-box p {
+    margin-bottom: 15px;
+}
+
+.about-text-box span {
+    color: var(--accent-lime);
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+/* =========================================
+   Components (PORTAL links & Widgets)
+========================================= */
+.section-title {
+    font-size: 1.2rem;
+    color: var(--accent-purple);
+    border-bottom: 2px dashed var(--accent-purple);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title i {
+    color: var(--accent-lime);
+    font-size: 1.5rem;
+}
+
+.link-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.cyber-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--accent-purple);
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.cyber-btn i {
+    font-size: 1.8rem;
+}
+
+.cyber-btn.x-btn i {
+    color: #1DA1F2;
+}
+
+.cyber-btn.twitch-btn i {
+    color: #9146FF;
+}
+
+.cyber-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.4), transparent);
+    transform: skewX(-20deg);
+    transition: 0.5s;
+}
+
+.cyber-btn:hover {
+    background: rgba(144, 48, 255, 0.2);
+    border-color: var(--accent-lime);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+    transform: translateX(5px);
+}
+
+.cyber-btn:hover::before {
+    left: 150%;
+}
+
+.gimmick-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--accent-purple);
+    padding: 20px;
+    border-left: 4px solid var(--accent-lime);
+}
+
+.box-title {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.terminal-view {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.terminal-view p {
+    margin-bottom: 5px;
+}
+
+.typewriter-text {
+    color: var(--text-main);
+    border-right: 2px solid var(--accent-lime);
+    display: inline-block;
+    animation: typeCursor 1s infinite;
+}
+
+@keyframes typeCursor {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+/* --- Schedule Widget --- */
+.schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-family: monospace;
+}
+
+.schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: rgba(144, 48, 255, 0.05);
+    border-left: 2px solid rgba(144, 48, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.schedule-item:hover {
+    background: rgba(144, 48, 255, 0.2);
+    border-left-color: var(--accent-lime);
+}
+
+.day-tag {
+    color: var(--accent-purple);
+    font-weight: bold;
+    width: 40px;
+    margin-right: 15px;
+    text-align: center;
+    border-right: 1px dashed rgba(255, 255, 255, 0.2);
+    padding-right: 10px;
+}
+
+.time {
+    color: var(--text-muted);
+    width: 60px;
+    margin-right: 10px;
+}
+
+.title {
+    color: var(--text-main);
+    flex: 1;
+}
+
+/* =========================================
+   Navigation (Back to Hub)
+========================================= */
+.top-nav {
+    position: fixed;
+    top: 20px;
+    left: 40px;
+    z-index: 1000;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(11, 7, 26, 0.8);
+    border: 1px solid var(--accent-purple);
+    color: var(--accent-lime);
+    /* 戻るボタンもテーマ色に */
+    font-weight: bold;
+    text-decoration: none;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.back-btn:hover {
+    background: var(--accent-purple);
+    color: #fff;
+}
+
+/* =========================================
+   Animations
+========================================= */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+/* =========================================
+   Gimmicks & Interactions
+========================================= */
+
+/* --- Ofuda Break --- */
+.ofuda-tag {
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.ofuda-tag:hover {
+    background: #ff0000;
+    color: #fff;
+    box-shadow: 2px 2px 0 var(--accent-magenta);
+}
+
+.broken-seal {
+    animation: breakSealAnim 0.8s forwards;
+    pointer-events: none;
+}
+
+@keyframes breakSealAnim {
+    0% {
+        transform: scale(1.1) rotate(-5deg);
+        opacity: 1;
+    }
+
+    20% {
+        transform: scale(1.5) rotate(10deg);
+        opacity: 1;
+        filter: drop-shadow(0 0 10px red);
+    }
+
+    100% {
+        transform: scale(0) translateY(100px) rotate(45deg);
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* --- Global Glitch / Berserk --- */
+.global-glitch {
+    animation: screenGlitch 0.2s 4 alternate;
+}
+
+@keyframes screenGlitch {
+    0% {
+        filter: invert(0) hue-rotate(0deg);
+        transform: translate(0, 0);
+    }
+
+    100% {
+        filter: invert(0.8) hue-rotate(90deg) contrast(1.5);
+        transform: translate(-10px, 10px);
+    }
+}
+
+.avatar-berserk .avatar-img {
+    filter: contrast(1.5) brightness(1.2) sepia(1) hue-rotate(300deg) drop-shadow(0 0 15px #ff0000) !important;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+/* 封印解除後の禍々しいモード (CSS変数の上書きによる色変) */
+.jiangshi-mode {
+    --accent-purple: #FF0044;
+    --accent-lime: #FF00FF;
+    --card-bg: rgba(40, 0, 0, 0.8);
+    transition: all 1s;
+}
+
+.jiangshi-mode .spider-web-bg {
+    filter: hue-rotate(180deg) brightness(1.5);
+}
+
+/* --- Hacker Terminal --- */
+.hack-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px 10px;
+    background: transparent;
+    border: 1px dashed var(--accent-lime);
+    color: var(--accent-lime);
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    word-break: break-all;
+    white-space: normal;
+}
+
+.hack-btn:hover {
+    background: rgba(57, 255, 20, 0.2);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+}
+
+.terminal-view {
+    max-height: 120px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.terminal-view::-webkit-scrollbar {
+    width: 4px;
+}
+
+.terminal-view::-webkit-scrollbar-thumb {
+    background: var(--accent-purple);
+}
+
+.sys-warn {
+    color: var(--accent-magenta);
+}
+
+/* =========================================
+   Responsive
+========================================= */
+@media (max-width: 900px) {
+
+    .profile-column,
+    .portal-column {
+        grid-column: span 12;
+    }
+}

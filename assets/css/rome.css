@@ -1,0 +1,173 @@
+/* =========================================
+   Rome Concept Style
+   Theme: Ancient Rome, Temple, Marble, Classic
+========================================= */
+
+:root {
+    --rome-bg: #eaeaea;
+    /* 大理石風ライトグレー */
+    --rome-column: #e0d8c8;
+    /* 柱のベース色 */
+    --rome-gold: #cfa858;
+    /* インペリアル・ゴールド */
+    --rome-dark: #2c3e50;
+    /* 深いネイビー（文字色） */
+    --rome-red: #8b0000;
+    /* ローマンレッド */
+    --font-heading: 'Cinzel', serif;
+    --font-text: 'Noto Serif JP', serif;
+}
+
+body {
+    background-color: var(--rome-bg);
+    /* よりリアルな大理石風のテクスチャ（CSSマルチグラデーション） */
+    background-image:
+        radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.5) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%),
+        linear-gradient(45deg, rgba(0, 0, 0, 0.03) 25%, transparent 25%),
+        linear-gradient(315deg, rgba(0, 0, 0, 0.03) 25%, var(--rome-bg) 25%);
+    background-position: 0 0, 0 0, 10px 0, 10px 0, 0 0, 0 0;
+    background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px, 20px 20px, 20px 20px;
+    color: var(--rome-dark);
+    font-family: var(--font-text);
+}
+
+.back-btn {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--rome-gold);
+    text-decoration: none;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn:hover {
+    color: var(--rome-red);
+    border-bottom: 2px solid var(--rome-red);
+}
+
+.rome-content {
+    background-image:
+        linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, 0.03) 100%),
+        linear-gradient(0deg, transparent 95%, rgba(0, 0, 0, 0.03) 100%);
+    background-size: 30px 30px;
+    border: 3px solid var(--rome-gold);
+    padding: 20px 0;
+    position: relative;
+}
+
+/* ボックス内に擬似的に描画する柱 */
+.rome-content::before,
+.rome-content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0px;
+    width: 40px;
+    background: linear-gradient(to right, #b0a898 0%, #e0d8c8 15%, #f5f0e6 40%, #e0d8c8 60%, #d0c8b8 85%, #a09888 100%);
+    z-index: 1;
+    /* フルーティング（溝）表現 */
+    background-image: repeating-linear-gradient(to right, transparent, transparent 10px, rgba(0, 0, 0, 0.1) 10px, rgba(0, 0, 0, 0.1) 12px);
+    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    border-right: 2px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1), -5px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rome-content::before {
+    left: 10px;
+}
+
+.rome-content::after {
+    right: 10px;
+}
+
+.rome-content-inner {
+    position: relative;
+    z-index: 2;
+    padding: 10px 40px 0;
+}
+
+.colosseum-btn-wrap {
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+.rome-btn {
+    font-family: var(--font-heading);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 50px;
+    background: linear-gradient(to bottom, #d4af37 0%, #b38b22 100%);
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+    border: 2px solid #8e6d18;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.rome-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: rotate(45deg) translateY(-100%);
+    transition: transform 0.6s;
+}
+
+.rome-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.rome-btn:hover::after {
+    transform: rotate(45deg) translateY(100%);
+}
+
+.rome-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+
+
+@media (max-width: 900px) {
+
+    /* スマホ時は内部の柱を細くしてスペースを確保 */
+    .rome-content::before,
+    .rome-content::after {
+        width: 15px;
+        left: 5px;
+    }
+
+    .rome-content::after {
+        left: auto;
+        right: 5px;
+    }
+
+    .rome-content-inner {
+        padding: 20px 10px 0;
+    }
+
+    .rome-content {
+        padding: 20px 10px 20px 10px;
+    }
+}

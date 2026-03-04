@@ -1,0 +1,300 @@
+﻿/* =========================================
+   Sumo Concept Style
+   Theme: Sumo, JapaneseTraditional, Powerful
+========================================= */
+
+:root {
+    --sumo-red: #da291c;
+    /* 日本の伝統赤（より鮮やかに） */
+    --sumo-dark: #231815;
+    /* 暗い墨色 */
+    --sumo-sand: #e6dac3;
+    /* 土俵の土の色（明るく） */
+    --sumo-white: #fcfaf2;
+    /* 生成り色 */
+    --font-heading: 'Klee One', 'Yu Mincho', serif;
+    --font-text: 'Noto Sans JP', sans-serif;
+}
+
+body {
+    background-color: var(--sumo-sand);
+    /* 砂のようなノイズと円形の土俵ラインを背景に配置 */
+    background-image:
+        radial-gradient(circle at center, transparent 300px, rgba(35, 24, 21, 0.05) 301px, rgba(35, 24, 21, 0.05) 320px, transparent 321px),
+        repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.02) 0px, rgba(0, 0, 0, 0.02) 2px, transparent 2px, transparent 6px);
+    background-position: center bottom -150px, 0 0;
+    color: var(--sumo-dark);
+    font-family: var(--font-text);
+}
+
+.top-nav {
+    position: relative;
+    top: 35px;
+    z-index: 1000;
+}
+
+.back-btn {
+    font-family: var(--font-text);
+    font-weight: bold;
+    color: var(--sumo-dark);
+    background: var(--sumo-white);
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 2px solid var(--sumo-dark);
+    border-radius: 4px;
+    box-shadow: 2px 2px 0 var(--sumo-red);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    box-shadow: 4px 4px 0 var(--sumo-red);
+    transform: translate(-2px, -2px);
+}
+
+.back-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0 var(--sumo-red);
+}
+
+/* 上部の紅白幕 */
+.maku-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background: repeating-linear-gradient(to right,
+            var(--sumo-white),
+            var(--sumo-white) 40px,
+            var(--sumo-red) 40px,
+            var(--sumo-red) 80px);
+    z-index: 999;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.maku-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: radial-gradient(circle at 15px 0, var(--sumo-dark) 10px, transparent 11px) repeat-x;
+    background-size: 30px 15px;
+}
+
+.sumo-container {
+    position: relative;
+    z-index: 10;
+}
+
+/* 背景に配置する日の丸 */
+.hinomaru-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: var(--sumo-red);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.1;
+    filter: blur(20px);
+}
+
+.dohyo-icon {
+    color: var(--sumo-red);
+    font-size: clamp(2rem, 4vw, 4rem);
+}
+
+.sumo-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: var(--sumo-dark);
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.15em;
+    text-shadow: 3px 3px 0 var(--sumo-white);
+}
+
+.sumo-subtitle {
+    text-align: center;
+    font-weight: bold;
+    color: var(--sumo-red);
+    border-top: 3px solid var(--sumo-dark);
+    border-bottom: 3px solid var(--sumo-dark);
+    padding: 5px 20px;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    letter-spacing: 0.4em;
+    background: var(--sumo-white);
+    display: inline-block;
+}
+
+/* 番付表風の説明枠 */
+.banzuke-board {
+    background: var(--sumo-white);
+    border: 3px solid var(--sumo-dark);
+    padding: 20px 40px;
+    position: relative;
+    box-shadow: 15px 15px 0 rgba(35, 24, 21, 0.1);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+    background-size: 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.banzuke-board::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 50%;
+    width: 3px;
+    background: var(--sumo-dark);
+    transform: translateX(-50%);
+}
+
+.banzuke-title {
+    color: var(--sumo-dark);
+    text-align: center;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    border-bottom: 2px solid var(--sumo-dark);
+    margin: 0 auto 20px auto;
+    display: inline-block;
+}
+
+.banzuke-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex: 1;
+}
+
+.banzuke-col {
+    width: 45%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.banzuke-col.right-col {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    height: auto;
+    line-height: 2;
+    font-family: var(--font-heading);
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    align-items: center;
+}
+
+.banzuke-col.left-col {
+    font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+    line-height: 1.6;
+    justify-content: center;
+}
+
+.banzuke-col.left-col p {
+    margin: 0;
+}
+
+.banzuke-col.left-col h3 {
+    font-family: var(--font-heading);
+    color: var(--sumo-red);
+    border-bottom: 2px dashed var(--sumo-dark);
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* 軍配ボタン */
+.gunpai-btn-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.gunpai-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sumo-red);
+    color: var(--sumo-white);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border-radius: 50px;
+    border: 3px solid var(--sumo-dark);
+    position: relative;
+    font-family: var(--font-heading);
+    box-shadow: 0 5px 0 var(--sumo-dark);
+    transition: all 0.1s;
+}
+
+.gunpai-btn:hover {
+    background: var(--sumo-dark);
+    color: var(--sumo-white);
+    box-shadow: 0 5px 0 var(--sumo-red);
+}
+
+.gunpai-btn:active {
+    transform: translateY(10px);
+    box-shadow: 0 0 0 transparent;
+}
+
+.drop-in {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s;
+}
+
+.drop-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-aspect-ratio: 1/1),
+(max-width: 1024px) {
+    .banzuke-board::before {
+        display: none;
+    }
+
+    .banzuke-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .banzuke-col {
+        width: 100%;
+    }
+
+    .banzuke-col.right-col {
+        writing-mode: horizontal-tb;
+        border-bottom: 2px dashed #ccc;
+        padding-bottom: 10px;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .sumo-container {
+        margin-top: 30px;
+    }
+
+    .top-nav {
+        padding: 5px 15px;
+        top: 20px;
+    }
+
+    .banzuke-board {
+        padding: 20px 15px 15px 15px;
+    }
+}

@@ -1,0 +1,1023 @@
+/* =========================================
+   PojiPojiKo-chan Concept Styles
+   Theme: Poji's Toy Box (Chaos, Pop, Vivid & Energetic)
+   ========================================= */
+
+:root {
+    --bg-color: #f8fafc;
+    /* 明るい背景 */
+    --text-main: #0f172a;
+    /* 濃い文字色 */
+    --text-muted: #475569;
+    --accent-blue: #0ea5e9;
+    /* ビビッドなブルー（メイン） */
+    --accent-yellow: #facc15;
+    /* 元気なイエロー（サブ） */
+    --accent-pink: #ec4899;
+    /* トイピンク（アクセント） */
+    --accent-sage: #34d399;
+    /* 蘇生・ヒール色（VALORANT要素） */
+    --accent-live: #ef4444;
+    /* Red for LIVE */
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --border-color: #0ea5e9;
+
+    --font-heading: 'Outfit', 'Noto Sans JP', sans-serif;
+    --font-body: 'Outfit', 'Noto Sans JP', sans-serif;
+
+    --shadow-pop: 6px 6px 0px rgba(14, 165, 233, 0.2);
+    /* ポップな落ち影 */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    /* おもちゃ箱のような楽しい背景グラデーション */
+    background: repeating-linear-gradient(45deg,
+            #f0f9ff,
+            #f0f9ff 20px,
+            #e0f2fe 20px,
+            #e0f2fe 40px);
+    color: var(--text-main);
+    min-height: 100vh;
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    display: block !important;
+}
+
+/* =========================================
+   Parallax & Floating Shapes (落書き風シール)
+   ========================================= */
+.floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.parallax-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+
+/* シールのようなオブジェクト */
+.shape {
+    position: absolute;
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--accent-blue);
+    opacity: 0.2;
+    animation: floatAnim 8s infinite ease-in-out alternate;
+    transition: transform 0.1s linear;
+    text-shadow: 2px 2px 0px var(--accent-yellow);
+}
+
+.shape-1::after {
+    content: '★';
+}
+
+.shape-1 {
+    top: 5%;
+    left: 10%;
+    transform: rotate(-15deg);
+    animation-duration: 7s;
+}
+
+.shape-2::after {
+    content: '🎮';
+    font-size: 6rem;
+    color: var(--accent-pink);
+}
+
+.shape-2 {
+    top: 40%;
+    right: 5%;
+    transform: rotate(20deg);
+    animation-duration: 9s;
+    animation-delay: -2s;
+    opacity: 0.15;
+    text-shadow: none;
+}
+
+.shape-3::after {
+    content: 'W';
+    color: var(--accent-sage);
+    font-size: 8rem;
+}
+
+/* Wキー */
+.shape-3 {
+    bottom: 10%;
+    left: 15%;
+    transform: rotate(-10deg);
+    animation-duration: 11s;
+    animation-delay: -4s;
+}
+
+.shape-4::after {
+    content: 'GG!';
+}
+
+.shape-4 {
+    top: 20%;
+    right: 25%;
+    transform: rotate(15deg);
+    animation-duration: 6s;
+    opacity: 0.3;
+}
+
+.shape-5::after {
+    content: '🧊';
+}
+
+/* Sage要素 */
+.shape-5 {
+    bottom: 30%;
+    right: 15%;
+    font-size: 5rem;
+    animation-duration: 10s;
+    text-shadow: none;
+}
+
+
+@keyframes floatAnim {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-30px) scale(1.1) rotate(10deg);
+    }
+}
+
+.concept-container {
+    padding: 100px 15px 80px;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   Typography & Utilities
+   ========================================= */
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mt-5 {
+    margin-top: 2.5rem;
+}
+
+/* Animations */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px) rotate(-2deg);
+    /* 最初斜めから入ってくる */
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* ばいーんと出る */
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+}
+
+.delay-1 {
+    transition-delay: 0.1s;
+}
+
+.delay-2 {
+    transition-delay: 0.2s;
+}
+
+/* =========================================
+   Top Navigation
+   ========================================= */
+.top-nav {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    z-index: 100;
+    pointer-events: none;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.top-nav>* {
+    pointer-events: auto;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    background: var(--text-main);
+    font-weight: 800;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 3px solid var(--text-main);
+    box-shadow: 4px 4px 0 var(--accent-blue);
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--accent-pink);
+    color: #fff;
+}
+
+.back-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0 var(--accent-pink);
+}
+
+/* =========================================
+   Hero Section
+   ========================================= */
+.hero {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.hero::after {
+    content: '💙';
+    position: absolute;
+    top: -20px;
+    right: 20%;
+    font-size: 3rem;
+    animation: bouncePop 2s infinite;
+}
+
+@keyframes bouncePop {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-20px) scale(1.2);
+    }
+}
+
+.icon-ring {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--accent-yellow);
+    padding: 8px;
+    /* ギザギザのボーダー風 */
+    border: 4px dashed var(--accent-blue);
+    box-shadow: var(--shadow-pop);
+    transform: rotate(-5deg);
+    transition: transform 0.3s ease;
+}
+
+.icon-ring:hover {
+    transform: rotate(10deg) scale(1.05);
+}
+
+.poji-icon {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: var(--accent-blue);
+}
+
+.poji-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 5px;
+    text-shadow: 3px 3px 0 var(--accent-yellow), -2px -2px 0 var(--accent-blue);
+    transform: rotate(-1deg);
+}
+
+.poji-title span {
+    font-size: 1.8rem;
+}
+
+.poji-subtitle {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    background: var(--accent-pink);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transform: rotate(2deg);
+    border: 2px solid var(--text-main);
+    box-shadow: 3px 3px 0 var(--text-main);
+    margin-bottom: 20px;
+}
+
+.poji-desc {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* LIVE Badge */
+.live-badge-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.live-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 3px solid var(--accent-live);
+    color: var(--accent-live);
+    padding: 8px 24px;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 1rem;
+    box-shadow: 4px 4px 0 rgba(239, 68, 68, 0.2);
+    transform: rotate(-2deg);
+    transition: all 0.2s;
+}
+
+.live-badge:hover {
+    transform: scale(1.05) rotate(1deg);
+}
+
+.pulse-ring {
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-live);
+    border-radius: 50%;
+    position: relative;
+}
+
+.pulse-ring::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--accent-live);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse 1.5s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse {
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+
+/* Social Links (Sticker Buttons) */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.poji-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 3px solid var(--text-main);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    box-shadow: 4px 4px 0 var(--text-main);
+    transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* それぞれ少しずらして配置 */
+.poji-btn:nth-child(1) {
+    transform: rotate(-5deg);
+}
+
+.poji-btn:nth-child(2) {
+    transform: rotate(3deg);
+}
+
+.poji-btn:nth-child(3) {
+    transform: rotate(-3deg);
+}
+
+.poji-btn:hover {
+    transform: scale(1.1) rotate(0deg);
+    background: var(--accent-yellow);
+    box-shadow: 6px 6px 0 var(--accent-blue);
+    color: var(--text-main) !important;
+    /* オーバーライド */
+}
+
+.poji-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0px 0px 0 var(--accent-blue);
+}
+
+/* =========================================
+   Grid & Cards (Toy Box Layout)
+   ========================================= */
+.schedule-section {
+    margin: 100px 0 60px;
+    /* 上部の余白を100pxに拡張 */
+    position: relative;
+    z-index: 10;
+}
+
+.poji-content-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 25px;
+    /* align-items: start; を削除し、デフォルトの stretch にする */
+}
+
+.glass-box,
+.widget-card,
+.schedule-block {
+    background: var(--card-bg);
+    border: 3px solid var(--text-main);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: var(--shadow-pop);
+    position: relative;
+}
+
+/* --- Left Column (Profile & Schedule) 7/12 --- */
+.schedule-column {
+    grid-column: span 7;
+    min-width: 0;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    /* つぎはぎ風見出し */
+    background: var(--accent-yellow);
+    display: inline-block;
+    padding: 5px 10px;
+    border: 2px solid var(--text-main);
+    transform: rotate(-1deg);
+    margin-left: -5px;
+}
+
+.profile-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.profile-text mark {
+    background: linear-gradient(transparent 60%, rgba(34, 211, 238, 0.5) 60%);
+    padding: 0 4px;
+    color: var(--text-main);
+}
+
+/* Outfit Viewer */
+.outfit-viewer-container {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 3px dashed var(--accent-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* =========================================
+   Schedule Grid
+   ========================================= */
+.schedule-block {
+    padding: 20px;
+}
+
+.schedule-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.schedule-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 2px solid var(--text-muted);
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 700;
+    transition: transform 0.2s;
+    overflow: hidden;
+}
+
+.schedule-card:hover {
+    transform: translateX(5px);
+    border-color: var(--accent-blue);
+}
+
+.schedule-card.today {
+    background: #fffbeB;
+    /* 薄い黄色 */
+    border: 3px solid var(--accent-pink);
+    transform: scale(1.02) rotate(-1deg);
+    box-shadow: 4px 4px 0 var(--accent-blue);
+    z-index: 1;
+}
+
+.today-badge {
+    display: inline-block;
+    background: var(--accent-pink);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 5px;
+    animation: bounce 2s infinite;
+}
+
+.schedule-day {
+    flex: 0 0 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 2px dashed var(--text-muted);
+    margin-right: 15px;
+    padding-right: 15px;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.schedule-card.today .schedule-day {
+    color: var(--accent-pink);
+    border-right-style: solid;
+    border-color: var(--accent-pink);
+}
+
+.schedule-day .ja {
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.schedule-day .en {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.schedule-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.schedule-info .time {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 2px;
+}
+
+.schedule-info .title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.schedule-info .title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.schedule-info .platform {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* --- Right Column (Widgets) 5/12 --- */
+.widgets-column {
+    grid-column: span 5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.widget-card {
+    padding: 15px;
+}
+
+.widget-card:hover {
+    transform: translateY(-3px) rotate(1deg);
+    box-shadow: 8px 8px 0 var(--accent-pink);
+}
+
+/* Discord Banner (Pixel/Retro style) */
+.discord-banner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #5865F2;
+    color: #fff;
+    border-radius: 12px;
+    border: 3px solid var(--text-main);
+    padding: 15px;
+    text-decoration: none;
+    box-shadow: 4px 4px 0 var(--text-main);
+    font-weight: 800;
+    transition: all 0.2s;
+}
+
+.discord-banner:hover {
+    background: #4752c4;
+    transform: scale(1.02);
+    box-shadow: 6px 6px 0 var(--text-main);
+}
+
+.discord-banner i {
+    font-size: 2rem;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.discord-banner h3 {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+}
+
+.discord-banner p {
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.discord-banner .arrow {
+    margin-left: auto;
+    font-size: 1.2rem;
+}
+
+/* Music Widget */
+.music-widget {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.music-cover {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid var(--text-main);
+}
+
+.music-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.music-info {
+    flex: 1;
+}
+
+.now-playing {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--accent-pink);
+    letter-spacing: 0.1em;
+}
+
+.music-info h3 {
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+    color: var(--text-main);
+    font-weight: 800;
+}
+
+.music-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Magic Button (Valorant inspired Heal Orb) */
+.magic-btn-container {
+    width: 100%;
+}
+
+.magic-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent-sage);
+    border: 3px solid var(--text-main);
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.magic-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0 var(--text-main);
+}
+
+/* Timeline Widget */
+.timeline-header {
+    font-size: 1rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-main);
+    border-bottom: 2px dashed var(--accent-blue);
+    padding-bottom: 10px;
+}
+
+.tweet-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tweet-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--text-main);
+}
+
+.tweet-user .name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.tweet-user .id {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.tweet-content .text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.tweet-content .time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Toggle Switch (Outfit) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+    border: 2px solid var(--text-main);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+    border: 2px solid var(--text-main);
+}
+
+input:checked+.slider {
+    background-color: var(--accent-pink);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px var(--accent-pink);
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Flip Box */
+#box-flip {
+    perspective: 1000px;
+    cursor: pointer;
+    height: 180px;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.flip-front,
+.flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--text-main);
+    border-radius: 16px;
+    box-shadow: var(--shadow-pop);
+}
+
+.flip-front {
+    background: var(--card-bg);
+    color: var(--text-main);
+}
+
+.flip-back {
+    background: var(--accent-blue);
+    color: #fff;
+    transform: rotateY(180deg);
+}
+
+#box-flip.is-flipped .flip-inner {
+    transform: rotateY(180deg);
+}
+
+
+/* =========================================
+   Footer / Marquee (Caution Tape Style)
+   ========================================= */
+.marquee-container {
+    background: var(--accent-yellow);
+    border-top: 4px solid var(--text-main);
+    border-bottom: 4px solid var(--text-main);
+    color: var(--text-main);
+    font-weight: 900;
+    font-size: 1.5rem;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    transform: rotate(2deg) scale(1.1);
+    /* 画面を横切るテープ風 */
+    margin: 80px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.marquee-wrapper {
+    display: inline-block;
+    animation: marqueeScroll 15s linear infinite;
+}
+
+.marquee-content {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 900px) {
+    .poji-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-column,
+    .widgets-column {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .schedule-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .schedule-day {
+        flex: none;
+        border-right: none;
+        border-bottom: 2px dashed var(--border-color);
+        margin-right: 0;
+        padding-right: 0;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .marquee-container {
+        transform: rotate(0) scale(1);
+    }
+}

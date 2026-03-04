@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Concept: Nocturne (Elegant & Dark)
+   ========================================================================== */
+
+:root {
+    --bg-color: #0d0914;
+    --text-main: #e2dbea;
+    --text-accent: #c4b5fd;
+    /* 淡い紫 */
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Noto Serif JP', serif;
+    /* エレガントな明朝体 */
+}
+
+/* Ensure everything respects the global container */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-body);
+}
+
+/* 常に背後で動くミステリアスなグラデーション */
+.background-nocturne {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 150%, #2e1065 0%, #0d0914 80%);
+    opacity: 0.8;
+}
+
+/* ナビゲーション */
+.top-nav {
+    padding: 20px 40px;
+    position: relative;
+    z-index: 100;
+    flex-shrink: 0;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-accent);
+    text-decoration: none;
+    font-family: var(--font-display);
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+    color: #fff;
+}
+
+.concept-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin: 0;
+    background: linear-gradient(180deg, #fff 0%, var(--text-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.concept-subtitle {
+    font-family: var(--font-display);
+    letter-spacing: 0.3em;
+    color: var(--text-accent);
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.separator-line {
+    background: var(--text-accent);
+}
+
+.lyric-text {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Theme Overrides for newly flattened structure */
+.glass-text {
+    background: rgba(13, 9, 20, 0.7);
+    /* Custom glass color */
+    border: 1px solid rgba(196, 181, 253, 0.2);
+    /* No display flex override needed, rely on desc-box */
+}
+
+.glass-text h2 {
+    font-family: var(--font-display);
+    color: var(--text-accent);
+    margin-top: 0;
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+}
+
+.glass-text p {
+    font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ギャラリー画像のフィルタリングを背景画像に適用 */
+.gallery-img {
+    filter: sepia(0.3) hue-rotate(240deg) saturate(0.5);
+    /* Removed hover scale logic, static background */
+}
+
+/* --------- Theme Toggle Button --------- */
+.theme-toggle {
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    background: none;
+    border: none;
+    color: var(--text-accent);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s;
+    outline: none;
+}
+
+.theme-toggle:hover {
+    transform: rotate(30deg) scale(1.1);
+    color: var(--text-main);
+}
+
+/* --------- Light Theme Overrides (Daylight / Morning) --------- */
+body {
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+body.light-theme {
+    --bg-color: #faf5ff;
+    /* 柔らかくエレガントな光 */
+    --text-main: #4c1d95;
+    /* 深い紫のテキスト */
+    --text-accent: #7c3aed;
+    /* やや明るめの紫 */
+}
+
+/* 背景グラデーションの反転 */
+body.light-theme .background-nocturne {
+    background: radial-gradient(circle at 50% 150%, #e9d5ff 0%, #faf5ff 80%);
+    opacity: 1;
+}
+
+/* ガラステキストの反転 */
+body.light-theme .glass-text {
+    background: rgba(250, 245, 255, 0.8);
+    /* Lighter glass */
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    box-shadow: 0 10px 30px rgba(76, 29, 149, 0.05);
+}
+
+/* ギャラリー画像の雰囲気を光(朝)にする */
+body.light-theme .gallery-img {
+    filter: sepia(0.1) hue-rotate(240deg) saturate(1.2) brightness(1.2);
+}
+
+/* ライトモード時のタイトル視認性向上（背後を少し暗くする） */
+body.light-theme .concept-header {
+    position: relative;
+    padding: 20px 0;
+    margin-top: -20px;
+}
+
+body.light-theme .concept-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    max-width: 800px;
+    height: 150%;
+    background: radial-gradient(ellipse at center, rgba(76, 29, 149, 0.15) 0%, transparent 65%);
+    z-index: -1;
+    pointer-events: none;
+}

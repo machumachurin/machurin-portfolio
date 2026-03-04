@@ -1,0 +1,1176 @@
+﻿/* ==========================================================================
+   Hub Page Styles
+   ========================================================================== */
+
+:root {
+    --bg-base: #050505;
+    --text-main: #f5f5f7;
+    --text-muted: #86868b;
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Noto Sans JP', sans-serif;
+
+    /* Portal Colors */
+    --color-nocturne: #8b5cf6;
+    /* パープル系 */
+    --color-cyber: #06b6d4;
+    /* シアン系 */
+    --color-nature: #10b981;
+    /* エメラルド系 */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --------- Ambient Background --------- */
+.ambient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+    animation: float 20s infinite ease-in-out alternate;
+    transition: background 1s ease, transform 1s ease;
+}
+
+.orb-1 {
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.05);
+    top: -100px;
+    left: -200px;
+}
+
+.orb-2 {
+    width: 800px;
+    height: 800px;
+    background: rgba(255, 255, 255, 0.02);
+    bottom: -200px;
+    right: -200px;
+    animation-delay: -10s;
+}
+
+.noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* シンプルなCSSノイズパターン */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(100px, 50px);
+    }
+}
+
+/* --------- Layout --------- */
+.hub-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.hub-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.hub-title {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hub-subtitle {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    letter-spacing: 0.4em;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.hub-desc {
+    color: #a1a1aa;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+/* --------- Expanding Portals (Cards) --------- */
+.portal-category-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--text-main);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.portal-category-title i {
+    color: var(--text-muted);
+}
+
+.mt-5 {
+    margin-top: 60px;
+}
+
+.portals-section {
+    width: 100%;
+    position: relative;
+    /* 画面全体まで広げるためのネガティブマージンハック（親要素の制約を超えるため） */
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+}
+
+/* 左右のスクロールボタン (Netflix風グラデーションフェード) */
+.scroll-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    border: none;
+    color: white;
+    font-size: 3.5rem;
+    cursor: pointer;
+    width: 8vw;
+    min-width: 60px;
+    opacity: 0;
+    transition: opacity 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portals-section:hover .scroll-btn {
+    opacity: 1;
+}
+
+.scroll-btn:hover {
+    color: var(--neon-cyan);
+}
+
+.left-btn {
+    left: 0;
+    background: linear-gradient(to right, rgba(14, 15, 20, 1) 0%, rgba(14, 15, 20, 0.7) 50%, transparent 100%);
+}
+
+.right-btn {
+    right: 0;
+    background: linear-gradient(to left, rgba(14, 15, 20, 1) 0%, rgba(14, 15, 20, 0.7) 50%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+    .scroll-btn {
+        display: none;
+        /* スマホ等ではネイティブスワイプ優先 */
+    }
+}
+
+.portals-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    /* 最初のアイテムと最後のアイテムが画面中央に止まるように左右のパディングを要素の半分の幅に設定 */
+    padding: 20px calc(50% - clamp(100px, 20vw, 120px)) 40px;
+    -webkit-overflow-scrolling: touch;
+    /* スクロールバー非表示 (webkit・IE等向け) */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.portals-container::-webkit-scrollbar {
+    display: none;
+}
+
+.portals-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.portals-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.portals-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.portal-card {
+    position: relative;
+    /* 横スクロール対応の固定幅と伸縮 */
+    flex: 0 0 clamp(200px, 40vw, 260px);
+    /* 幅を少し広げ横長にする */
+    height: 150px;
+    /* 高さを大きく下げてスタイリッシュな横長(ランドスケープ)に */
+    scroll-snap-align: center;
+    border-radius: 20px;
+    /* flex, margin etc ... */
+    overflow: hidden;
+    /* transitionにopacityを追加、変化を滑らかに */
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-main);
+    display: flex;
+    align-items: flex-end;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* デフォルト状態（中央以外）は小さく、少し透過させる */
+    transform: scale(0.85) translateZ(0);
+    opacity: 0.5;
+}
+
+/* 中央に来たカードは元のサイズになり、不透明になる */
+.portal-card.is-center {
+    transform: scale(1.05) translateZ(0);
+    opacity: 1;
+    z-index: 10;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.portal-card:hover {
+    /* ホバー時は少し明るく */
+    opacity: 1;
+}
+
+/* --------- 親ボックス・子ボックス (Playground由来) --------- */
+.parent-box {
+    background-color: transparent;
+    border: none;
+    padding: 10px 0;
+    /* paddingをさらに削る */
+    margin-top: 10px;
+    /* 大幅に狭める */
+    margin-bottom: 10px;
+    /* 大幅に狭める */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.parent-box>.portal-category-title {
+    margin-top: 0;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.glass-scroll-container {
+    background-color: transparent;
+    border: none;
+    padding: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 内部スクロールは .portals-container の flexbox に任せるため、ここでの overflow は不要ですが、
+   スクロールバーデザインを適用する場合は .portals-container に直接反映します */
+
+
+/* 背景画像・プレースホルダー (JS/インラインで後から画像を当て込む想定) */
+.portal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    transition: opacity 0.6s ease, transform 10s linear;
+    z-index: 0;
+}
+
+.portal-card:hover .portal-bg {
+    opacity: 0.6;
+    transform: scale(1.05);
+    /* 拡大率を1.1から1.05へ抑制 */
+}
+
+/* コンテンツオーバーレイ */
+.portal-content {
+    position: relative;
+    z-index: 1;
+    padding: 15px 20px;
+    /* 高さを下げた分パディングも抑えて文字領域を確保 */
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.portal-icon {
+    display: none !important;
+    /* 全キャラクター共通でアイコンを削除し透かしのみに統一 */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+    opacity: 0.7;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.portal-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    /* 画面幅に応じて縮小、少し小さく */
+    margin-bottom: 0px;
+    /* 説明文を消すので下余白を詰める */
+    letter-spacing: 0.1em;
+    white-space: normal;
+    /* 折り返しを許可してみきれを防ぐ */
+    word-break: keep-all;
+    /* 単語の途中での改行を防ぐ */
+    line-height: 1.2;
+}
+
+.portal-desc {
+    display: none;
+    /* 説明文はホバー時含めて完全に非表示にする */
+}
+
+.enter-btn {
+    display: none;
+    /* ボタンテキストも非表示にするか、アイコンだけ残すか。今回は非表示にしてスッキリさせます */
+}
+
+/* Hover States for Expanding Cards */
+.portal-card:hover {
+    transform: translateY(-8px) translateZ(0);
+    /* 横スクロール時は少しの浮き上がりに留める */
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+.portal-card:hover .portal-icon {
+    transform: translateY(-5px);
+    /* 少しだけ浮かす */
+    opacity: 1;
+}
+
+/* Specific Card Theming on Hover */
+#portal-nocturne:hover {
+    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+#portal-nocturne:hover .portal-icon,
+#portal-nocturne:hover .enter-btn {
+    color: var(--color-nocturne);
+}
+
+#portal-cyber:hover {
+    box-shadow: 0 20px 50px rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.5);
+}
+
+#portal-cyber:hover .portal-icon,
+#portal-cyber:hover .enter-btn {
+    color: var(--color-cyber);
+}
+
+#portal-nature:hover {
+    box-shadow: 0 20px 50px rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.5);
+}
+
+#portal-nature:hover .portal-icon,
+#portal-nature:hover .enter-btn {
+    color: var(--color-nature);
+}
+
+#portal-poji:hover {
+    box-shadow: 0 20px 50px rgba(219, 39, 119, 0.2);
+    border-color: rgba(219, 39, 119, 0.5);
+}
+
+#portal-poji:hover .portal-icon,
+#portal-poji:hover .enter-btn {
+    color: #db2777;
+}
+
+#portal-wa:hover {
+    box-shadow: 0 20px 50px rgba(218, 41, 28, 0.2);
+    border-color: rgba(218, 41, 28, 0.5);
+}
+
+#portal-wa:hover .portal-icon,
+#portal-wa:hover .enter-btn {
+    color: #da291c;
+}
+
+#portal-saiki:hover {
+    box-shadow: 0 20px 50px rgba(229, 62, 62, 0.2);
+    border-color: rgba(229, 62, 62, 0.5);
+}
+
+#portal-saiki:hover .portal-icon,
+#portal-saiki:hover .enter-btn {
+    color: #E53E3E;
+}
+
+#portal-aiyueni:hover {
+    box-shadow: 0 20px 50px rgba(137, 207, 240, 0.2);
+    border-color: rgba(137, 207, 240, 0.5);
+}
+
+#portal-aiyueni:hover .portal-icon,
+#portal-aiyueni:hover .enter-btn {
+    color: #89CFF0;
+}
+
+#portal-urameshi:hover {
+    box-shadow: 0 20px 50px rgba(57, 255, 20, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+#portal-urameshi:hover .portal-icon,
+#portal-urameshi:hover .enter-btn {
+    color: #39ff14;
+}
+
+/* Y2K */
+#portal-y2k:hover {
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.2);
+    border-color: rgba(255, 105, 180, 0.5);
+}
+
+#portal-y2k:hover .portal-icon,
+#portal-y2k:hover .enter-btn {
+    color: #ff69b4;
+}
+
+/* Antique */
+#portal-antique:hover {
+    box-shadow: 0 20px 50px rgba(198, 168, 124, 0.2);
+    border-color: rgba(198, 168, 124, 0.5);
+}
+
+#portal-antique:hover .portal-icon,
+#portal-antique:hover .enter-btn {
+    color: #c6a87c;
+}
+
+/* Rome */
+#portal-rome:hover {
+    box-shadow: 0 20px 50px rgba(207, 168, 88, 0.2);
+    border-color: rgba(207, 168, 88, 0.5);
+}
+
+#portal-rome:hover .portal-icon,
+#portal-rome:hover .enter-btn {
+    color: #cfa858;
+}
+
+/* Hawaii */
+#portal-hawaii:hover {
+    box-shadow: 0 20px 50px rgba(0, 180, 216, 0.2);
+    border-color: rgba(0, 180, 216, 0.5);
+}
+
+#portal-hawaii:hover .portal-icon,
+#portal-hawaii:hover .enter-btn {
+    color: #00b4d8;
+}
+
+/* Sumo */
+#portal-sumo:hover {
+    box-shadow: 0 20px 50px rgba(201, 23, 30, 0.2);
+    border-color: rgba(201, 23, 30, 0.5);
+}
+
+#portal-sumo:hover .portal-icon,
+#portal-sumo:hover .enter-btn {
+    color: #c9171e;
+}
+
+/* Choco */
+#portal-choco:hover {
+    box-shadow: 0 20px 50px rgba(244, 143, 177, 0.2);
+    /* ピンクのアクセント */
+    border-color: rgba(244, 143, 177, 0.5);
+}
+
+#portal-choco:hover .portal-icon,
+#portal-choco:hover .enter-btn {
+    color: #f48fb1;
+}
+
+/* Art */
+#portal-art:hover {
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.5);
+}
+
+#portal-art:hover .portal-icon,
+#portal-art:hover .enter-btn {
+    color: #d4af37;
+}
+
+/* Origami */
+#portal-origami:hover {
+    box-shadow: 0 20px 50px rgba(197, 197, 106, 0.2);
+    border-color: rgba(197, 197, 106, 0.5);
+}
+
+#portal-origami:hover .portal-icon,
+#portal-origami:hover .enter-btn {
+    color: #c5c56a;
+}
+
+#portal-nocturne .portal-bg {
+    background-image: url('../img/nocturne-bg.png');
+    filter: grayscale(20%) brightness(0.8);
+}
+
+#portal-cyber .portal-bg {
+    background-image: url('../img/cyber-bg.png');
+}
+
+#portal-nature .portal-bg {
+    background-image: url('../img/nature-bg.png');
+}
+
+#portal-wa .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(218, 41, 28, 0.3) 100%),
+        url('../img/wa_bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-wa:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.6) 0%, rgba(218, 41, 28, 0.5) 100%),
+        url('../img/wa_bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+#portal-poji .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(14, 165, 233, 0.95) 0%, rgba(244, 114, 182, 0.85) 100%),
+        url('../../creators/poji/img/poji_icon.png') center top/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-poji:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(14, 165, 233, 0.85) 0%, rgba(244, 114, 182, 0.6) 100%),
+        url('../../creators/poji/img/poji_icon.png') center top/cover no-repeat;
+    transform: scale(1.05);
+}
+
+#portal-urameshi .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(31, 10, 62, 0.95) 0%, rgba(57, 255, 20, 0.85) 100%),
+        url('../../creators/urameshi/img/urameshi_icon.jpg') center 20%/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-urameshi:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(88, 28, 135, 0.85) 0%, rgba(20, 184, 166, 0.6) 100%),
+        url('../../creators/urameshi/img/urameshi_icon.jpg') center 20%/cover no-repeat;
+    transform: scale(1.05);
+}
+
+#portal-saiki .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(5, 5, 5, 0.8) 0%, rgba(229, 62, 62, 0.3) 100%),
+        url('../../creators/saiki/img/さいき_立ち絵.png') center 10%/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-saiki:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(5, 5, 5, 0.6) 0%, rgba(229, 62, 62, 0.6) 100%),
+        url('../../creators/saiki/img/さいき_立ち絵.png') center 10%/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* 愛ゆえに ポータル */
+#portal-aiyueni .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(10, 17, 40, 0.8) 0%, rgba(137, 207, 240, 0.3) 100%),
+        url('../../creators/aiyueni/img/aiyueni_stand1.png') center 30%/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-aiyueni:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(10, 17, 40, 0.5) 0%, rgba(137, 207, 240, 0.7) 100%),
+        url('../../creators/aiyueni/img/aiyueni_stand1.png') center 30%/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Y2K ポータル */
+#portal-y2k .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(236, 72, 153, 0.6) 0%, rgba(6, 182, 212, 0.5) 100%),
+        url('../img/y2k-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-y2k:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(236, 72, 153, 0.7) 0%, rgba(6, 182, 212, 0.6) 100%),
+        url('../img/y2k-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Antique ポータル */
+#portal-antique .portal-bg {
+    background:
+        radial-gradient(circle at center, rgba(160, 120, 80, 0.5) 0%, rgba(44, 37, 29, 0.8) 100%),
+        url('../img/antique-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-antique:hover .portal-bg {
+    background:
+        radial-gradient(circle at center, rgba(198, 168, 124, 0.4) 0%, rgba(30, 25, 19, 0.7) 100%),
+        url('../img/antique-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Rome ポータル */
+#portal-rome .portal-bg {
+    background:
+        linear-gradient(to bottom right, rgba(244, 244, 244, 0.2) 0%, rgba(44, 62, 80, 0.8) 100%),
+        url('../img/rome-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-rome:hover .portal-bg {
+    background:
+        linear-gradient(to bottom right, rgba(244, 244, 244, 0.3) 0%, rgba(26, 37, 47, 0.7) 100%),
+        url('../img/rome-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Hawaii ポータル */
+#portal-hawaii .portal-bg {
+    background:
+        linear-gradient(to bottom, rgba(0, 180, 216, 0.4) 0%, rgba(0, 119, 182, 0.8) 100%),
+        url('../img/hawaii-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-hawaii:hover .portal-bg {
+    background:
+        linear-gradient(to bottom, rgba(0, 180, 216, 0.5) 0%, rgba(2, 62, 138, 0.7) 100%),
+        url('../img/hawaii-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Sumo ポータル */
+#portal-sumo .portal-bg {
+    background:
+        linear-gradient(to right, rgba(35, 24, 21, 0.7) 0%, rgba(201, 23, 30, 0.5) 100%),
+        url('../img/sumo-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-sumo:hover .portal-bg {
+    background:
+        linear-gradient(to right, rgba(26, 18, 16, 0.6) 0%, rgba(201, 23, 30, 0.6) 100%),
+        url('../img/sumo-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Chocolatier ポータル */
+#portal-choco .portal-bg {
+    background:
+        radial-gradient(circle at top left, rgba(141, 110, 99, 0.6) 0%, rgba(62, 39, 35, 0.8) 100%),
+        url('../img/choco-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-choco:hover .portal-bg {
+    background:
+        radial-gradient(circle at top left, rgba(244, 143, 177, 0.5) 0%, rgba(62, 39, 35, 0.7) 100%),
+        url('../img/choco-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Art ポータル */
+#portal-art .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(58, 43, 28, 0.5) 0%, rgba(204, 51, 51, 0.5) 100%),
+        url('../img/art-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-art:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(58, 43, 28, 0.6) 0%, rgba(51, 102, 153, 0.5) 100%),
+        url('../img/art-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+/* Origami ポータル */
+#portal-origami .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(254, 223, 225, 0.5) 0%, rgba(74, 74, 74, 0.7) 100%),
+        url('../img/origami-bg.png') center/cover no-repeat;
+    transition: all 0.5s ease;
+}
+
+#portal-origami:hover .portal-bg {
+    background:
+        linear-gradient(135deg, rgba(197, 197, 106, 0.5) 0%, rgba(74, 74, 74, 0.8) 100%),
+        url('../img/origami-bg.png') center/cover no-repeat;
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .hub-title {
+        font-size: 3rem;
+    }
+}
+
+/* =========================================
+   Interactive Showcase Section
+   ========================================= */
+.showcase-section {
+    max-width: 1200px;
+    margin: 100px auto 50px;
+    padding: 0 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 50px;
+    color: var(--text-main);
+}
+
+.section-title span {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    display: block;
+    margin-top: 10px;
+    letter-spacing: 0.2em;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.showcase-box {
+    position: relative;
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: left;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 250px;
+}
+
+.showcase-box h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    letter-spacing: 0.05em;
+    font-family: var(--font-display);
+    position: relative;
+    z-index: 2;
+}
+
+.showcase-box p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+}
+
+/* Glassmorphism Box */
+.glass-box {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.glass-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Media Box */
+.media-box {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.media-placeholder {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    transition: background 0.4s ease;
+    position: relative;
+    z-index: 2;
+}
+
+
+.media-placeholder i {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.media-box:hover .media-placeholder {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+.media-box:hover .media-placeholder i {
+    color: var(--text-main);
+    transform: scale(1.1);
+}
+
+.media-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* Hover Glow Box (Animation) */
+.animation-box {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+.animation-box::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+.animation-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+.animation-box:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================================
+   Showcase Models: VTuber / Streamer specific
+   ========================================= */
+
+/* Schedule Box */
+.schedule-box {
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+.schedule-preview {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
+    position: relative;
+}
+
+.schedule-day {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border-left: 3px solid transparent;
+    transition: background 0.3s, transform 0.3s;
+}
+
+
+.schedule-day.active {
+    background: rgba(139, 92, 246, 0.15);
+    border-left-color: #8b5cf6;
+}
+
+
+.schedule-day .day {
+    font-weight: bold;
+    color: var(--text-main);
+    width: 65px;
+}
+
+.schedule-day .time {
+    color: var(--text-muted);
+    width: 50px;
+}
+
+.schedule-day .title {
+    color: var(--text-main);
+}
+
+.schedule-box:hover .schedule-day.active {
+    transform: translateX(5px);
+}
+
+/* Live Box (Live NOW Badge) */
+.live-box {
+    background: rgba(255, 0, 0, 0.02);
+    border: 1px solid rgba(255, 0, 0, 0.1);
+}
+
+
+.live-badge-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 30px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #ff4444;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ff4444;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+.live-badge-preview i {
+    font-size: 1.8rem;
+    color: #ff4444;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
+    }
+}
+
+.live-box:hover .live-badge-preview {
+    background: rgba(255, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Links Box (Link Tree) */
+.links-box {
+    background: rgba(20, 20, 20, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+.links-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+    z-index: 2;
+    position: relative;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.3s;
+    cursor: default;
+}
+
+
+.link-item i {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    /* Fallback */
+}
+
+.links-box:hover .link-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+
+/* --------- Footer --------- */
+.hub-footer {
+    margin-top: 60px;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    opacity: 0.5;
+}
+
+/* --------- Animations --------- */
+.fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUpAnim 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.fade-up.delay-1 {
+    animation-delay: 0.3s;
+}
+
+.fade-up.delay-2 {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeUpAnim {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 900px) {
+    .portals-section {
+        height: auto;
+    }
+
+    .portals-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .portal-card {
+        height: 250px;
+        width: 100%;
+        max-width: 100%;
+        min-width: unset;
+        flex: none;
+        /* 縦方向の basis 計算暴走を防ぐ */
+    }
+
+    .portal-card:hover {
+        flex: none;
+        transform: scale(1.02);
+    }
+
+    .portal-desc {
+        opacity: 1;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .enter-btn {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hub-title {
+        font-size: 2.5rem;
+    }
+}

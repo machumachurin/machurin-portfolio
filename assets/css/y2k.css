@@ -1,0 +1,174 @@
+/* =========================================
+   Y2K Concept Style
+   Theme: Retro Pop, Gal, Stickers, Colorful
+========================================= */
+
+:root {
+    --y2k-pink: #ff69b4;
+    --y2k-blue: #00ffff;
+    --y2k-yellow: #ffff00;
+    --y2k-purple: #9d00ff;
+    --y2k-bg: #fff0f5;
+    --y2k-text: #333;
+    --font-y2k: 'Courier New', Courier, monospace;
+    --font-heading: 'Impact', sans-serif;
+}
+
+body {
+    background: var(--y2k-bg) url('../img/y2k_pattern.png') repeat;
+    background-size: 50px;
+    color: var(--y2k-text);
+    font-family: var(--font-y2k);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    background: var(--y2k-pink);
+    border: 3px solid #000;
+    border-radius: 50px;
+    box-shadow: 4px 4px 0px #000;
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-shadow: 1px 1px 0px #000;
+}
+
+.back-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px #000;
+}
+
+/* ???????????????????*/
+.scrapbook-parent {
+    background: transparent;
+    border: none;
+    padding: 30px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: 1;
+}
+
+/* ???????????????????????? */
+.sticker {
+    background: #fff;
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    position: relative;
+    transform: rotate(var(--rot, 0deg));
+    transition: transform 0.3s, z-index 0s;
+    border-radius: 15px;
+    flex: 0 1 auto;
+    max-width: 100%;
+}
+
+.sticker:hover {
+    transform: rotate(var(--rot, 0deg)) scale(1.05);
+    z-index: 100;
+}
+
+.y2k-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #fff;
+    margin: 0;
+    text-shadow: 3px 3px 0px var(--y2k-purple), -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000, 2px 2px 0px #000;
+    letter-spacing: 2px;
+}
+
+.y2k-subtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    font-weight: bold;
+    color: #fff;
+    background: #000;
+    display: inline-block;
+    padding: 5px 15px;
+    margin-top: 5px;
+    border-radius: 30px;
+}
+
+.separator-line {
+    width: 60px;
+    height: 3px;
+    background: var(--y2k-pink);
+    margin: 15px auto 0;
+}
+
+/* ??????????????? */
+.concept-sticker {
+    background: #fff;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.y2k-desc-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--y2k-pink);
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.y2k-desc-text {
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    font-weight: bold;
+    line-height: 1.6;
+    margin: 0;
+
+}
+
+.y2k-rec {
+    color: var(--y2k-purple);
+    font-size: 1.1rem;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+}
+
+.bounce-in {
+    opacity: 0;
+    transform: scale(0.5);
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bounceIn {
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(var(--rot, 0deg));
+    }
+}
+
+/* ???????????*/
+@media (max-width: 900px) {
+    .scrapbook-parent {
+        padding: 15px;
+    }
+
+    .sticker {
+        width: 100%;
+        max-width: 100%;
+        transform: rotate(0deg) !important;
+    }
+
+    .y2k-title {
+        font-size: 2.5rem;
+    }
+}

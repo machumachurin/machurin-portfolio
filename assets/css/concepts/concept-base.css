@@ -1,0 +1,224 @@
+﻿/* ==========================================================================
+   Concept Model Base Layout (Unified Full-Screen Structure)
+   ========================================================================== */
+
+/* This CSS enforces the strict 1-screen rule and absolute background positioning */
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100dvh;
+    overflow-x: hidden;
+    /* 横スクロールは防止 */
+    overflow-y: auto;
+    /* 縦にはみ出た場合はページ全体でスクロールを許可 */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* Font and Colors are defined per-theme in their respective CSS files */
+}
+
+/* 
+ * The main container must be configured to stretch 
+ * within the constrained 100dvh window.
+ */
+.concept-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4vw 2vh 4vw;
+    box-sizing: border-box;
+    flex: 1;
+    /* Take up remaining height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center content vertically */
+    align-items: center;
+    /* Center content horizontally */
+    min-height: 0;
+    /* Important for flex-shrink in children */
+    z-index: 10;
+    position: relative;
+}
+
+/* 
+ * Background Image Container
+ * Positioned absolutely behind everything else.
+ */
+.concept-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    z-index: -10;
+    object-fit: cover;
+    pointer-events: none;
+    /* Ignore clicks */
+}
+
+/* 
+ * Common UI Elements 
+ */
+.top-nav {
+    padding: 2vh 4vw;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.concept-header {
+    text-align: center;
+    margin-bottom: 2vh;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.lyric-text {
+    text-align: center;
+    font-size: clamp(0.85rem, 2vh, 1.1rem);
+    margin-bottom: 3vh;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    font-weight: 500;
+    max-width: 800px;
+    /* Keep line length readable */
+}
+
+/* 
+ * The Description Box 
+ * This replaces the split card, acting as a glass-plate over the background.
+ */
+.desc-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 3vh 4vw;
+    background: rgba(10, 10, 10, 0.6);
+    /* Default dark glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 1;
+    overflow-y: auto;
+    /* Allow inner scrolling if content overflows */
+    max-height: 45vh;
+    /* Prevent it from pushing other elements out of the screen */
+}
+
+/* Custom Scrollbar for inner elements */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.separator-line {
+    width: 60px;
+    height: 1px;
+    margin: 2vh auto;
+    opacity: 0.5;
+}
+
+/* 
+ * Animations 
+ */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.fade-in.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.fade-in.delay-3 {
+    transition-delay: 0.6s;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 
+ * Responsive Overrides
+ */
+@media (max-width: 768px) {
+    .concept-container {
+        padding: 0 4vw 2vh 4vw;
+        justify-content: flex-start;
+        /* Push to top on mobile */
+        padding-top: 2vh;
+    }
+
+    .top-nav {
+        padding: 2vh 4vw;
+    }
+
+    .desc-box {
+        padding: 3vh 4vw;
+        margin-top: auto;
+        /* Push to bottom on mobile */
+    }
+}
+
+
+/* Universal automatic Light/Dark toggle logic */
+html.auto-invert {
+    /* Flipping colors while maintaining hues creates a perfect contrast inversion */
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html.auto-invert img,
+html.auto-invert video,
+html.auto-invert .gallery-img,
+html.auto-invert .concept-bg,
+html.auto-invert .theme-toggle {
+    /* Override inline filters securely to ensure it reverses the previous invert */
+    filter: invert(1) hue-rotate(180deg) !important;
+}
+
+.theme-toggle {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    outline: none;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-50%) rotate(30deg) scale(1.1);
+}

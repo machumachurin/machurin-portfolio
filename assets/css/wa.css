@@ -1,0 +1,179 @@
+/* =========================================
+   Wa (Zen / Miyabi) Concept Styles
+   Theme: Ink Wash Painting, Vermilion Red, Vertical Text, Serene
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&display=swap');
+
+:root {
+    --bg-color: #0a0a0a;
+    /* 墨のような深い黒 */
+    --text-main: #e8e8e8;
+    /* 和紙のような白 */
+    --text-muted: #888888;
+    --accent-red: #da291c;
+    /* 朱色 */
+    --accent-gold: #c5a059;
+    /* 鈍色金 */
+
+    --card-bg: rgba(20, 20, 20, 0.6);
+    --border-color: rgba(255, 255, 255, 0.1);
+
+    --font-heading: 'Noto Serif JP', serif;
+    --font-body: 'Noto Serif JP', serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-body);
+}
+
+/* グラデーションマスクによる「靄（もや）」の表現 */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* =========================================
+   Navigation
+   ========================================= */
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+    /* muted から main(明るめ) に変更 */
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    padding: 10px 20px;
+    background: rgba(10, 10, 10, 0.5);
+    /* 視認性向上のために暗い透過背景を追加 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* 枠線を少し明るめに */
+    transition: all 0.4s ease;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    /* ブラー効果を強める */
+}
+
+.back-btn:hover {
+    background: var(--text-main);
+    color: var(--bg-color);
+    border-color: var(--text-main);
+}
+
+/* =========================================
+   Card & Info Styles
+   ========================================= */
+.wa-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.wa-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.wa-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.wa-card:hover::before {
+    opacity: 1;
+}
+
+/* =========================================
+   Social Links
+   ========================================= */
+.wa-links {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+.wa-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 60px;
+    height: 60px;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+.wa-btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--accent-red);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(1.2);
+    transition: all 0.4s ease;
+}
+
+.wa-btn:hover {
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+    background: rgba(218, 41, 28, 0.1);
+}
+
+.wa-btn:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* =========================================
+   Animations
+   ========================================= */
+/* アニメーション用クラスで独自なものだけ */
+/* 縦書き要素用のフェードアニメーション（横方向から出現） */
+.fade-left {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.fade-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 1.5s ease-out, transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+    .wa-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,267 @@
+/* =========================================
+   Art Concept Style
+   Theme: Museum, Canvas, Paint Strokes
+========================================= */
+
+:root {
+    --art-canvas: #f4eee0;
+    /* キャンバスの古びた白 */
+    --art-frame: #3a2b1c;
+    /* 額縁のダークブラウン */
+    --art-gold: #c5a059;
+    /* 額縁の装飾ゴールド */
+    --art-paint-red: #8b2323;
+    --art-paint-blue: #234567;
+    --font-heading: 'Shippori Mincho', serif;
+    --font-text: 'Noto Sans JP', sans-serif;
+}
+
+body {
+    background-color: var(--art-canvas);
+    /* より精細なキャンバス生地のテクスチャ */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(0, 0, 0, 0.015) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.015) 2px, transparent 2px);
+    background-size: 4px 4px, 4px 4px, 8px 8px, 8px 8px;
+    color: #333;
+    font-family: var(--font-text);
+}
+
+
+
+.back-btn {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--art-frame);
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid var(--art-frame);
+    transition: all 0.4s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(244, 238, 224, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.back-btn:hover {
+    color: var(--art-canvas);
+    background: var(--art-frame);
+    box-shadow: 4px 4px 0 var(--art-gold);
+    transform: translate(-2px, -2px);
+}
+
+/* 額縁（Frame）コンテナ */
+.art-container {
+    position: relative;
+    z-index: 10;
+}
+
+.museum-frame {
+    background: #fff;
+    padding: 40px;
+    border: 20px solid var(--art-frame);
+    outline: 5px solid var(--art-gold);
+    outline-offset: -12px;
+    box-shadow:
+        inset 0 0 30px rgba(0, 0, 0, 0.15),
+        20px 20px 50px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: visible;
+}
+
+/* 額縁の四隅の装飾 */
+.museum-frame::before,
+.museum-frame::after {
+    content: '✤';
+    position: absolute;
+    color: var(--art-gold);
+    font-size: 1.5rem;
+    opacity: 0.5;
+}
+
+.museum-frame::before {
+    top: 10px;
+    left: 15px;
+}
+
+.museum-frame::after {
+    bottom: 10px;
+    right: 15px;
+}
+
+/* 額縁のネームプレート（展示作品名） */
+.gallery-plate {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, #f0e6d2, #d4af37);
+    border: 2px solid #5a4b3c;
+    padding: 12px 50px;
+    color: #3a2b1c;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    z-index: 20;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.gallery-plate::before,
+.gallery-plate::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    background: #3a2b1c;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.gallery-plate::before {
+    left: 15px;
+}
+
+.gallery-plate::after {
+    right: 15px;
+}
+
+/* 筆のストローク風の装飾 */
+.paint-stroke {
+    position: absolute;
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+.stroke-1 {
+    top: -50px;
+    right: -50px;
+    width: 400px;
+    height: 100px;
+    background: var(--art-paint-red);
+    transform: rotate(-25deg);
+}
+
+.stroke-2 {
+    bottom: -50px;
+    left: -50px;
+    width: 500px;
+    height: 150px;
+    background: var(--art-paint-blue);
+    transform: rotate(15deg);
+}
+
+.stroke-3 {
+    top: 40%;
+    left: 30%;
+    width: 200px;
+    height: 200px;
+    background: var(--art-gold);
+    opacity: 0.1;
+}
+
+.art-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.art-lyric {
+    font-family: var(--font-heading);
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    color: var(--art-frame);
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    opacity: 0.8;
+}
+
+.art-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    color: var(--art-frame);
+    margin: 0;
+    letter-spacing: 0.05em;
+    text-shadow: 2px 2px 0 rgba(197, 160, 89, 0.3);
+}
+
+.art-subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: var(--art-paint-red);
+    margin-bottom: 20px;
+    letter-spacing: 0.2em;
+}
+
+/* ギャラリーテキストエリア（説明文） */
+.museum-text {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px 30px;
+    border-left: 5px solid var(--art-paint-blue);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.museum-text h2 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--art-frame);
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(58, 43, 28, 0.2);
+    padding-bottom: 10px;
+}
+
+.museum-text p {
+    line-height: 1.6;
+    font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+    color: #444;
+    margin: 0;
+}
+
+.art-icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 15px;
+    color: var(--art-gold);
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+
+
+@media (max-width: 768px) {
+    .museum-frame {
+        padding: 20px 15px;
+        border-width: 10px;
+        outline-offset: -5px;
+    }
+
+    .art-title {
+        font-size: 2.5rem;
+    }
+
+    .gallery-plate {
+        width: 90%;
+        padding: 5px;
+        text-align: center;
+        font-size: 0.8rem;
+        bottom: -20px;
+        white-space: normal;
+    }
+}
