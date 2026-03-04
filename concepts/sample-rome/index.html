@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Rome | Machurin Concept Hub</title>
+    <!-- Phospor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Noto+Serif+JP:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/rome.css">
+</head>
+
+<body>
+    <!-- 全画面背景画像 (Romeの場合は大理石背景画像をCSSで指定しているので、ここでは省略または既存のクラスを利用するか、CSS側の指定をconcept-bgにするか検討) -->
+    <img src="../../assets/img/rome-bg.png" alt="Rome Background" class="concept-bg gallery-img"
+        style="filter: contrast(1.1); opacity: 0.25;" onerror="this.style.display='none'">
+
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn"><i class="ph-bold ph-arrow-left"></i> Return to Hub</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme" onclick="document.documentElement.classList.toggle('auto-invert')">
+            <i class="ph ph-sun-dim"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container fade-in delay-2">
+        <header class="concept-header">
+            <h1 class="concept-title" style="font-family: 'Cinzel', serif; color: var(--rome-dark);">Imperium</h1>
+            <p class="concept-subtitle" style="font-family: 'Cinzel', serif; color: var(--rome-gold);">- Ancient Glory -
+            </p>
+            <div class="separator-line" style="background: var(--rome-red);"></div>
+        </header>
+
+        <div class="lyric-container fade-in delay-2"
+            style="background: rgba(245, 240, 230, 0.85); display: inline-block; padding: 15px 30px; border-radius: 2px; border: 1px solid var(--rome-gold); margin: 0 auto 20px auto; box-shadow: 5px 5px 15px rgba(0,0,0,0.3); text-align: center;">
+            <p class="lyric-text"
+                style="font-family: 'Cinzel', serif; color: var(--rome-dark); font-weight: bold; margin: 0; text-shadow: none;">
+                永遠なる帝都、大理石に刻印された威光。<br>
+                栄光ある歴史の響きが、今蘇る。
+            </p>
+        </div>
+
+        <section class="desc-box rome-content fade-up"
+            style="background: rgba(245, 240, 230, 0.95); max-width: 800px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div class="rome-content-inner" style="padding-top: 10px;">
+                <h2
+                    style="font-family: 'Cinzel', serif; font-size: 1.5rem; text-align: center; color: var(--rome-red); margin-top: 0;">
+                    Concept Description</h2>
+                <p
+                    style="line-height: 1.6; font-size: clamp(0.85rem, 1.2vw, 1.05rem); text-align: justify; padding: 0 20px;">
+                    白大理石の重厚な神殿建築をモチーフとした「Ancient Rome（古代ローマ）」のデザインサンプルです。<br><br>
+                    クラシカルなセリフ体（Cinzel）と赤い帝国のアクセントカラーを用い、権力や威厳、歴史の壮大さを表現しています。石碑を思わせるレイアウトが、確固たる存在感を放ちます。<br><br>
+                    <strong style="color: var(--rome-red);">【おすすめのクリエイター】</strong><br>
+                    歴史や神話、スケールの大きな物語、リーダー的なカリスマ性を重視する人などに最適です。
+                </p>
+
+                <div class="colosseum-btn-wrap" style="text-align: center;">
+                    <a href="#" class="rome-btn"><i class="ph-fill ph-sword"></i> Enter Coliseum</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ロード時にアニメーション発火
+        window.onload = () => {
+            document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        };
+    </script>
+</body>
+
+</html>

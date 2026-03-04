@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nocturne | Concept Dimension</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/nocturne.css">
+
+<body>
+    <!-- 全画面背景画像 -->
+    <img src="../../assets/img/nocturne-bg.png" alt="Nocturne Background" class="concept-bg gallery-img">
+
+    <div class="background-nocturne"></div>
+
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn"><i class="ph ph-arrow-left"></i> Return to Hub</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme"
+            onclick="document.body.classList.toggle('light-theme')">
+            <i class="ph ph-sun-dim"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container visible">
+        <header class="concept-header fade-in">
+            <h1 class="concept-title">Nocturne</h1>
+            <p class="concept-subtitle">Elegant & Dark</p>
+            <div class="separator-line"></div>
+        </header>
+
+        <p class="lyric-text fade-in delay-2">
+            夜のヴェールに包まれた静寂。<br>
+            月の光だけが、あなたを導く道しるべとなる。
+        </p>
+
+        <section class="desc-box fade-in delay-3 glass-text">
+            <h2>Concept Description</h2>
+            <p>
+                「Nocturne（ノクターン）」のコンセプトモデルです。<br><br>
+                深い紫と洗練されたセリフ体のフォント（Cinzel等）を用い、「エレガントでミステリアスな大人っぽさ」を表現しています。<br>
+                グラスモーフィズムを取り入れ、背景のゆっくりとしたグラデーションの動きが上質さを演出します。<br><br>
+                <strong>【おすすめのクリエイター】</strong><br>
+                落ち着いたトーンを好む方、ASMR配信者、歌い手、またはプレミアム感を出したいプロジェクトに最適です。
+            </p>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

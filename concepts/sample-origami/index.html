@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origami (Geometry & Washi) | Machurin Concept Hub</title>
+    <!-- Phospor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&family=Sawarabi+Mincho&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/origami.css">
+</head>
+
+<body>
+    <!-- 背景に和紙や折り紙のテクスチャ画像を置く想定 -->
+    <img src="../../assets/img/origami-bg.png" alt="Origami Background" class="concept-bg gallery-img"
+        style="opacity: 0.2;" onerror="this.style.display='none'">
+
+    <!-- 背景で舞う幾何学ポリゴン -->
+    <div class="ori-polygon poly-1"></div>
+    <div class="ori-polygon poly-2"></div>
+    <div class="ori-polygon poly-3"></div>
+
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn">目次へ戻る</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme"
+            onclick="document.documentElement.classList.toggle('auto-invert')">
+            <i class="ph ph-sun-dim"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container ori-container">
+
+        <header class="concept-header fade-in delay-2" style="margin-bottom: 2vh;">
+            <h1 class="concept-title ori-title" style="letter-spacing: 0.15em;"><i class="ph-fill ph-paper-plane-right"
+                    style="color:var(--ori-sakura); vertical-align: middle;"></i> Origami</h1>
+            <p class="concept-subtitle ori-subtitle">DELICATE GEOMETRY</p>
+            <div class="separator-line" style="background: var(--ori-matcha);"></div>
+        </header>
+
+        <p class="lyric-text ori-lyric fade-in delay-2"
+            style="color: var(--ori-matcha); font-family: 'Sawarabi Mincho', serif; margin-bottom: 3vh;">
+            一枚の紙に込められた、端正な直線美。<br>
+            余白が語る奥ゆかしさと、凛とした佇まいを。
+        </p>
+
+        <section class="desc-box ori-paper fold-open fade-up delay-3"
+            style="max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.9);">
+            <div class="paper-inner" style="padding: 3vh 3vw;">
+                <h2
+                    style="font-family: 'Sawarabi Gothic', sans-serif; color: var(--ori-sakura); border-bottom: 1px solid var(--ori-sakura); padding-bottom: 5px; margin-top: 0; margin-bottom: 15px;">
+                    Concept Description</h2>
+                <p style="font-size: clamp(0.85rem, 1.2vh, 1rem); line-height: 1.6;">
+                    和紙の質感と、折り紙が織りなす直線美を取り入れた「Origami（折り紙・幾何学）」のデザインサンプルです。<br><br>
+                    桜色やりんどう色といった淡い日本の伝統色を背景に、幾何学的なポリゴン（多角形）を配置することで、「和風の中でも知性的で繊細な」雰囲気を追求しています。余白を大きくとることで、上品さを演出しています。<br><br>
+                    <strong>【おすすめのクリエイター】</strong><br>
+                    クラフトなどのものづくり系、知性的なキャラクター性やクリーンで上品な印象を重視する人などに最適です。
+                </p>
+
+                <div class="ori-icon-wrap" style="text-align: right; margin-top: 15px;">
+                    <i class="ph-fill ph-feather"
+                        style="font-size: 2.5rem; color: var(--ori-matcha); opacity: 0.3;"></i>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.fade-in, .fade-up, .fold-open').forEach(el => el.classList.add('visible'));
+        };
+    </script>
+</body>
+
+</html>

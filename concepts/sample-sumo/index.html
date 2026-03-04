@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相撲 (Japanese Traditional) | Machurin Concept Hub</title>
+    <!-- Phospor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/sumo.css">
+</head>
+
+<body>
+    <!-- 背景画像（和紙や砂のテクスチャを想定した画像、またはCSS効果と併用） -->
+    <img src="../../assets/img/sumo-bg.png" alt="Sumo Background" class="concept-bg gallery-img"
+        style="opacity: 0.15; filter: contrast(1.2);" onerror="this.style.display='none'">
+
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn"><i class="ph-bold ph-arrow-left"></i> 取組を終える</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme"
+            onclick="document.documentElement.classList.toggle('auto-invert')">
+            <i class="ph ph-sun-dim"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container sumo-container drop-in">
+        <!-- 背景の日の丸 -->
+        <div class="hinomaru-bg"></div>
+
+        <header class="concept-header">
+            <div class="dohyo-icon" style="text-align: center; margin-bottom: 5px;">
+                <i class="ph-fill ph-hands-clapping"></i>
+            </div>
+            <h1 class="concept-title sumo-title"
+                style="color: var(--sumo-dark); text-shadow: 3px 3px 0 var(--sumo-white);">相撲</h1>
+            <p class="concept-subtitle sumo-subtitle" style="background: var(--sumo-white);">O-YOKOZUNA / GRAND CHAMPION
+            </p>
+            <div class="separator-line" style="background: var(--sumo-red);"></div>
+        </header>
+
+        <div class="lyric-container fade-in delay-2"
+            style="background: rgba(252, 250, 242, 0.9); display: block; width: 90%; max-width: 600px; padding: 15px 30px; border-radius: 0; border: 2px solid var(--sumo-dark); margin: 0 auto 20px auto; box-shadow: 4px 4px 0 var(--sumo-red); text-align: center;">
+            <p class="lyric-text"
+                style="font-family: var(--font-heading); font-size: clamp(0.9rem, 4vw, 1.2rem); font-weight: bold; color: var(--sumo-dark); margin: 0; text-shadow: none; word-break: keep-all; line-height: 1.8;">
+                土俵に響く、四股の音。<br>天下無双の力と技が、今ここに示される。
+            </p>
+        </div>
+
+        <!-- 番付表風の案内表示 -->
+        <section class="desc-box banzuke-board fade-up delay-3"
+            style="width: 90%; max-width: 800px; margin: 0 auto; background: var(--sumo-white);">
+            <div class="banzuke-title">コンセプト・趣意書</div>
+
+            <div class="banzuke-content">
+                <!-- 右側（東）の列：縦書きで情緒的に -->
+                <div class="banzuke-col right-col">
+                    <p style="margin: 0; word-break: keep-all;">土俵の円形や番付表のような筆文字を用いた「大相撲・和風競技」のデザインサンプルであります。</p>
+                    <p style="margin: 10px 0 0 0; word-break: keep-all;">深い墨色を基調とし、日本の伝統的な「力強さ・ダイナミックさ」を余すところなく表現しております。
+                    </p>
+                </div>
+
+                <!-- 左側（西）の列：横書きで詳細に -->
+                <div class="banzuke-col left-col">
+                    <h3>【おすすめの殿方・姫君】</h3>
+                    <p style="margin-bottom: 10px; word-break: keep-all;">
+                        豪快なプレイ、和風かつ「動」を好む力強いキャラクター性を重視する殿方・姫君に最適かと存じます。
+                    </p>
+                    <p style="word-break: keep-all;">
+                        画面にドスンと落ちてくるようなアニメーションや、大胆な配色が視聴者の目を惹きつけます。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 軍配のボタン -->
+            <div class="gunpai-btn-container">
+                <a href="#" class="gunpai-btn"><i class="ph-fill ph-sword"></i> いざ、出陣</a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.fade-in, .fade-up, .drop-in').forEach(el => el.classList.add('visible'));
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum of Art | Machurin Concept Hub</title>
+    <!-- Phospor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Noto+Sans+JP:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/art.css">
+</head>
+
+<body>
+    <!-- 背景画像（美術館の壁紙風、または絵の接写など） -->
+    <img src="../../assets/img/art-bg.png" alt="Art Museum Background" class="concept-bg gallery-img"
+        style="opacity: 0.2; filter: blur(2px);" onerror="this.style.display='none'">
+
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn"><i class="ph-bold ph-arrow-left"></i> 美術館を出る</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme"
+            onclick="document.documentElement.classList.toggle('auto-invert')">
+            <i class="ph ph-sun-dim"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container art-container">
+
+        <header class="concept-header fade-in delay-2" style="margin-bottom: 5px;">
+            <h1 class="concept-title art-title"
+                style="color: var(--art-frame); text-shadow: 2px 2px 0 rgba(197, 160, 89, 0.3);">Masterpiece</h1>
+            <p class="concept-subtitle art-subtitle"
+                style="color: var(--art-paint-red); letter-spacing: 0.2em; font-weight: bold;">- Colors & Emotions -</p>
+        </header>
+
+        <p class="lyric-text fade-in delay-2"
+            style="font-family: var(--font-heading); color: var(--art-frame); font-style: italic; font-weight: bold; margin-bottom: 15px; margin-top: 10px;">
+            何気ない一瞬を、永遠の色彩に閉じ込める。<br>
+            ここは、あなたの感性が息づく一つのキャンバス。
+        </p>
+
+        <article class="museum-frame desc-box fade-up delay-3"
+            style="max-width: 800px; margin: 0 auto; background: #fff; border: 15px solid var(--art-frame); outline: 3px solid var(--art-gold); outline-offset: -8px;">
+            <!-- 背景の筆のストローク -->
+            <div class="paint-stroke stroke-1"></div>
+            <div class="paint-stroke stroke-2"></div>
+            <div class="paint-stroke stroke-3"></div>
+
+            <div class="art-content">
+                <section class="museum-text" style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(5px);">
+                    <h2>Concept Description</h2>
+                    <p style="font-size: clamp(0.85rem, 1.2vw, 1.05rem);">
+                        美術館に展示された一枚の絵画のような「Art（絵画・芸術）」のデザインサンプルです。<br><br>
+                        キャンバス生地の精細なテクスチャや、重厚な額縁、ネームプレートの装飾を用いて、「芸術的で鑑賞される対象」としての雰囲気を追求しています。筆のストロークを感じさせる大胆な色使いや、格式高い明朝体が特徴です。<br><br>
+                        <strong style="color: var(--art-paint-red);">【おすすめのクリエイター】</strong><br>
+                        お絵描きやイラスト制作、Live2Dモデラー、芸術的なパフォーマンスや歌唱力を重視する人などに最適です。
+                    </p>
+                    <div class="art-icons">
+                        <i class="ph-fill ph-palette"></i>
+                        <i class="ph-fill ph-paint-brush-broad"></i>
+                        <i class="ph-fill ph-frame-corners"></i>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 額縁下部のプレート -->
+            <div class="gallery-plate">
+                The Creator's Portfolio, 2026. Mixed Media on Web.
+            </div>
+        </article>
+
+    </main>
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.fade-in, .fade-up, .reveal').forEach(el => el.classList.add('visible'));
+        };
+    </script>
+</body>
+
+</html>

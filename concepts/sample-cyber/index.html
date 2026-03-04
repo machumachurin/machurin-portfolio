@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang=ja>
+
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content=width=device-width, initial-scale=1.0>
+    <title>Cyber Neon | Concept Dimension</title>
+    <!-- メカニカル・サイバーなフォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/cyber.css">
+</head>
+
+<body>
+    <!-- ギャラリー画像を全画面背景に。上からサイバーグリッドをかぶせる -->
+    <img src="../../assets/img/cyber-bg.png" alt="Cyber City" class="concept-bg gallery-img"
+        style="opacity: 0.1; filter: contrast(1.2) saturate(1.5);" onerror="this.style.display='none'">
+    <div class="cyber-grid-bg"></div>
+
+    <nav class="top-nav fade-in delay-1">
+        <!-- Hubへ戻るボタン -->
+        <a href="../../index.html" class="back-btn"><i class="ph ph-arrow-left"></i> ESCAPE</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme"
+            onclick="document.body.classList.toggle('light-theme')">
+            <i class="ph ph-sun-dim"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container">
+        <header class="concept-header">
+            <h1 class="concept-title glitch cyber-title">CYBER NEON</h1>
+            <p class="concept-subtitle cyber-subtitle">SYSTEM.OVERLOAD // AWAKEN</p>
+            <div class="separator-line"></div>
+        </header>
+
+        <p class="lyric-text lyric-cyber fade-in delay-2">
+            電子の海に瞬くネオン、交錯するデータの鼓動。<br>
+            リアルとバーチャルの境界が溶け合う、近未来へのダイヴ。
+        </p>
+
+        <section class="desc-box neon-box fade-up delay-3" style="max-width: 800px; margin: 0 auto;">
+            <h2 class="title-neon-cyan">
+                Concept Description</h2>
+            <p class="cyber-text">
+                鮮烈なシアンとマゼンタの光に魅せられる「Cyber Neon（サイバーネオン）」のデザインサンプルです。<br><br>
+                感情のノイズがデジタルに溶け込むネオン街をイメージし、グリッチエフェクト（バグったような表現）や発光するUIを用いて「近未来・サイバーパンク」な世界観を表現しています。<br><br>
+                <strong class="text-neon-magenta">【おすすめのクリエイター】</strong><br>
+                FPSなどのe-Sportsゲーム配信者、サイバーパンクやSF系の世界観を持つVtuber、エッジの効いたストリーマーなどに最適です。
+            </p>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.fade-in, .fade-up').forEach(el => {
+                setTimeout(() => el.classList.add('visible'), 100);
+            });
+        });
+    </script>
+</body>
+
+</html>

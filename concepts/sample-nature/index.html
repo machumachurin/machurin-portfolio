@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanctuary | Concept Dimension</title>
+    <!-- 丸みのある優しいフォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Zen+Maru+Gothic:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/nature.css">
+
+<body>
+    <!-- 蜈ｨ逕ｻ髱｢閭梧勹逕ｻ蜒・-->
+    <img src="../../assets/img/nature-bg.png" alt="Nature Background" class="concept-bg nature-img">
+
+    <div class="nature-bg">
+        <div class="sunbeam sunbeam-1"></div>
+        <div class="sunbeam sunbeam-2"></div>
+    </div>
+
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn"><i class="ph ph-arrow-left"></i> Return to Hub</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme"
+            onclick="document.body.classList.toggle('dark-theme')">
+            <i class="ph ph-moon"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container">
+        <header class="concept-header fade-in">
+            <h1 class="concept-title">Sanctuary</h1>
+            <p class="concept-subtitle">Organic & Light</p>
+            <div class="separator-line" style="background: var(--text-accent);"></div>
+        </header>
+
+        <p class="lyric-text fade-in delay-2" style="color: var(--text-main);">
+            木漏れ日が揺れる森の奥深く、穏やかな風が頬をなでる。<br>
+            そこにあるのは、自然と共に深呼吸できる安らぎの時間。
+        </p>
+
+        <section class="desc-box fade-in delay-3 nature-card">
+            <h2
+                style="font-family: var(--font-display); font-size: 1.8rem; color: var(--text-accent); margin-top: 0; margin-bottom: 10px;">
+                Concept Description</h2>
+            <p style="font-size: clamp(0.85rem, 1.2vw, 1.1rem); line-height: 1.6; color: var(--text-main); margin: 0;">
+                深い森と木漏れ日に包まれる「Sanctuary（サンクチュアリ）」のコンセプトモデルです。<br><br>
+                時間がゆっくりと流れ、心が自然のリズムと同調しているような「オーガニックで優しい」雰囲気を追求しています。<br>
+                丸みのあるフォントや、柔らかい光のアニメーションで居心地の良い空間を作ります。<br><br>
+                <strong>【おすすめのクリエイター】</strong><br>
+                癒やし系、アコースティック、ナチュラル志向を重視する人などに最適です。
+            </p>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hawaii Resort | Machurin Concept Hub</title>
+    <!-- Phospor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/concepts/concept-base.css">
+    <link rel="stylesheet" href="../../assets/css/hawaii.css">
+</head>
+
+<body>
+    <!-- 太陽の光 (削除済み) -->
+    <!-- 背景にハワイアンリゾートの画像を使う想定 -->
+    <img src="../../assets/img/hawaii-bg.png" alt="Hawaii Background" class="concept-bg gallery-img" style="opacity: 0.35;"
+        onerror="this.style.display='none'">
+
+    <nav class="top-nav fade-in delay-1">
+        <a href="../../index.html" class="back-btn"><i class="ph-bold ph-arrow-left"></i> Return</a>
+        <button class="theme-toggle" aria-label="Toggle Light/Dark Theme"
+            onclick="document.documentElement.classList.toggle('auto-invert')">
+            <i class="ph ph-sun-dim"></i>
+        </button>
+    </nav>
+
+    <main class="concept-container hawaii-container fade-in">
+        <header class="concept-header">
+            <h1 class="concept-title"
+                style="font-family: var(--font-heading); color: #ffffff; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);">
+                Aloha Spirit</h1>
+            <p class="concept-subtitle"
+                style="color: var(--hawaii-sand); font-weight: bold; letter-spacing: 0.1em; margin-top: 10px; text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
+                TROPICAL
+                PARADISE</p>
+            <div class="separator-line" style="background: var(--hawaii-sea);"></div>
+        </header>
+
+        <p class="lyric-text fade-in delay-2"
+            style="font-weight: bold; color: #ffffff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+            エメラルドの海、吹き抜ける潮風。<br>
+            永遠に続く夏を、ここで。
+        </p>
+
+        <section class="desc-box hawaii-text-area fade-up delay-3"
+            style="background: rgba(255, 255, 255, 0.85); max-width: 800px; margin: 0 auto; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);">
+            <h2
+                style="font-family: var(--font-heading); color: var(--hawaii-text); border-bottom: 2px dashed var(--hawaii-sea); padding-bottom: 10px; margin-top: 0;">
+                Concept Description</h2>
+            <p style="line-height: 1.6; color: #333; font-size: clamp(0.85rem, 1.2vw, 1rem);">
+                クリアな海の水色と白い砂浜をイメージした「Hawaii（ハワイ・リゾート）」のデザインサンプルです。<br><br>
+                画面下部で寄せては返す波のアニメーションや、ポラロイド写真風のギャラリーを配置し、夏らしくポジティブで「リラックスした南国」の雰囲気を追求しています。<br><br>
+                <strong style="color: var(--hawaii-deep);">【おすすめのクリエイター】</strong><br>
+                明るく元気なトーク、アウトドアや旅行好き、夏限定イベントや爽やかさを重視する人などに最適です。
+            </p>
+
+            <div style="text-align: center;">
+                <a href="#" class="hawaii-btn"><i class="ph-fill ph-play-circle"></i> Watch Stream</a>
+            </div>
+
+            <!-- ポラロイド写真風ギャラリー（ボックス内に縮小して配置、あるいは装飾として） -->
+            <div class="hawaii-gallery"
+                style="margin-top: 30px; transform: scale(0.6); position: absolute; right: -80px; top: -50px; pointer-events: none;">
+                <div class="polaroid pic-1"
+                    style="background: #fff; padding: 10px 10px 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transform: rotate(-10deg);">
+                    <div class="polaroid-img"
+                        style="width: 150px; height: 150px; background: var(--hawaii-sea); display: flex; align-items: center; justify-content: center;">
+                        <i class="ph-fill ph-camera" style="font-size: 3rem; color: #fff;"></i>
+                    </div>
+                </div>
+                <div class="polaroid pic-2"
+                    style="background: #fff; padding: 10px 10px 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transform: rotate(15deg) translate(20px, 10px);">
+                    <div class="polaroid-img"
+                        style="width: 150px; height: 150px; background: #f4a261; display: flex; align-items: center; justify-content: center;">
+                        <i class="ph-fill ph-sunglasses" style="font-size: 3rem; color: #fff;"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 波のアニメーション -->
+    <div class="wave-container">
+        <div class="wave"></div>
+        <div class="wave wave-2"></div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        };
+    </script>
+</body>
+
+</html>
